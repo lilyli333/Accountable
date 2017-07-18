@@ -7,11 +7,12 @@
 //
 
 import UIKit
+import CoreData
 
 class ListTasksViewController: UIViewController {
     
     @IBOutlet weak var listTasksTableView: UITableView!
-    var tasks = [Task]() {
+    var tasks = [NSManagedObject]() as! [Task] {
         didSet {
             listTasksTableView.reloadData()
         }
@@ -19,7 +20,7 @@ class ListTasksViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //tasks = CoreDataHelper.retrieveTask()
+       tasks = CoreDataHelper.retrieveTask()
     }
     
     override func didReceiveMemoryWarning() {
@@ -32,6 +33,8 @@ class ListTasksViewController: UIViewController {
                 print("Table view cell tapped")
                 let indexPath = listTasksTableView.indexPathForSelectedRow!
                 let task = tasks[indexPath.row]
+                print(task)
+                print(tasks[indexPath.row])
                 let displayTaskViewController = segue.destination as! DisplayTaskViewController
                 displayTaskViewController.task = task
                 
@@ -41,7 +44,7 @@ class ListTasksViewController: UIViewController {
     }
     
     @IBAction func unwindToListTaskViewController(_ segue: UIStoryboardSegue) {
-        //self.tasks = CoreDataHelper.retrieveTask()
+        self.tasks = CoreDataHelper.retrieveTask()
     }
 }
 
@@ -51,7 +54,7 @@ extension ListTasksViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             CoreDataHelper.deleteTask(task: tasks[indexPath.row])
-            //tasks = CoreDataHelper.retrieveTask()
+            tasks = CoreDataHelper.retrieveTask()
         }
     }
 

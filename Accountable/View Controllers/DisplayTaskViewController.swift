@@ -16,11 +16,8 @@ class DisplayTaskViewController: UIViewController {
     @IBOutlet weak var topMarginConstraint: NSLayoutConstraint!
     @IBOutlet weak var itemsTableView: UITableView!
     
-
-    var items = [NSManagedObject]() as! [Item]
+    var items = [Item]()
     var task: Task?
-    //let encodedData = NSKeyedArchiver.archivedData(withRootObject: task) as! NSCoder
-
     
     var addBlankCell = false
     
@@ -34,9 +31,15 @@ class DisplayTaskViewController: UIViewController {
             
         }
         else{
+            let cell = getItemCell()
+            //            let newItem = Item()
+            //            newItem.itemTitle = cell.title ?? ""
+            //            newItem.itemTime = cell.seconds ?? 60.0
+            //            newItem.itemDescription = cell.itemDescriptionTextView.text ?? ""
+            //            items.append(newItem)
+            
             let item = NSEntityDescription.entity(forEntityName: "Item", in: CoreDataHelper.managedContext)
             let newItem = NSManagedObject(entity: item!, insertInto: CoreDataHelper.managedContext) as! Item
-            let cell = getItemCell()
             newItem.setValue(cell.title! as NSString ?? "", forKey: "itemTitle")
             newItem.setValue(cell.itemDescriptionTextView.text as NSString  ?? "", forKey: "itemDescription")
             newItem.setValue(cell.seconds as Double ?? 60.0, forKey: "itemTime")
@@ -47,19 +50,13 @@ class DisplayTaskViewController: UIViewController {
             catch{
                 print("count not save. \(error)")
             }
+            
+            task?.mutableSetValue(forKey: "items").add(newItem)
+            
+            
             itemsTableView.reloadData()
             let indexPath = IndexPath(row: items.count, section: 0)
             itemsTableView.scrollToRow(at: indexPath, at: .top, animated: true)
-            
-            let fetchRequest = NSFetchRequest<Item>(entityName: "Item")
-            do {
-                let results = try CoreDataHelper.managedContext.fetch(fetchRequest)
-                print("results:")
-                print(results)
-            } catch let error as NSError {
-                print("Could not fetch \(error)")
-            }
-            
             return
         }
     }
@@ -69,13 +66,19 @@ class DisplayTaskViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        if let task = task {
-//            taskTitle.text = task.title
-//            items = task.items
-//        } else {
-//            taskTitle.text = ""
-//            items = [Item]()
-//        }
+        if let task = task {
+            taskTitle.text = task.title
+            //items = task.items as Array
+        } else {
+            taskTitle.text = ""
+            items = [Item]()
+            
+            let newtask = NSEntityDescription.entity(forEntityName: "Task", in: CoreDataHelper.managedContext)
+            let newTask = NSManagedObject(entity: newtask!, insertInto: CoreDataHelper.managedContext) as! Task
+            newTask.setValue(taskTitle.text as! NSString ??  "---", forKey: "title")
+            newTask.setValue(Date() as NSDate, forKey: "modificationTime")
+            self.task = newTask
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -83,57 +86,62 @@ class DisplayTaskViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let listTasksTableViewController = segue.destination as! ListTasksViewController
-        
-        if let identifier = segue.identifier {
-            if identifier == "cancelTask" {
-                print("the task was canceled!")
-                
-            }
-            else if segue.identifier == "saveTask" {
+        if segue.identifier == "cancelTask" {
+            print("the task was canceled!")
+            
+        }
+        else if segue.identifier == "saveTask" {
+            
+            print("savinggggg")
+            if addBlankCell == true{
+                let cell = getItemCell()
                 let item = NSEntityDescription.entity(forEntityName: "Item", in: CoreDataHelper.managedContext)
                 let newItem = NSManagedObject(entity: item!, insertInto: CoreDataHelper.managedContext) as! Item
-                print("savinggggg")
-                if addBlankCell == true{
-                    let cell = getItemCell()
-                    newItem.setValue(cell.title! as NSString ?? "", forKey: "itemTitle")
-                    newItem.setValue(cell.itemDescriptionTextView.text as NSString  ?? "", forKey: "itemDescription")
-                    newItem.setValue(cell.seconds as Double ?? 60.0, forKey: "itemTime")
-                    do{
-                        try CoreDataHelper.managedContext.save()
-                        items.append(newItem)
-                    }
-                    catch{
-                        print("count not save. \(error)")
-                    }                }
-                else if task == nil{
-                    let cell = getItemCell()
-                    newItem.setValue(cell.title! as NSString ?? "", forKey: "itemTitle")
-                    newItem.setValue(cell.itemDescriptionTextView.text as NSString  ?? "", forKey: "itemDescription")
-                    newItem.setValue(cell.seconds as Double ?? 60.0, forKey: "itemTime")
-
-                    do{
-                        try CoreDataHelper.managedContext.save()
-                        items.append(newItem)
-                    }
-                    catch{
-                        print("count not save. \(error)")
-                    }
+                newItem.setValue(cell.title! as NSString ?? "", forKey: "itemTitle")
+                newItem.setValue(cell.itemDescriptionTextView.text as NSString  ?? "", forKey: "itemDescription")
+                newItem.setValue(cell.seconds as Double ?? 60.0, forKey: "itemTime")
+                do{
+                    try CoreDataHelper.managedContext.save()
+                    items.append(newItem)
                 }
-//                                let newTask = Task()
-//                                newTask.title = taskTitle.text ?? ""
-//                                newTask.items = items
-//                                newTask.modificationTime = Date() as NSDate
-//                                listTasksTableViewController.tasks.append(newTask)
-                
-                
-                let newtask = self.task ?? CoreDataHelper.newTask()
-                newtask.title = taskTitle.text ?? ""
-//                newtask.items = items
-                newtask.modificationTime = Date() as NSDate
-                CoreDataHelper.saveTask()
+                catch{
+                    print("count not save. \(error)")
+                }
                 
             }
+            else if task == nil{
+                let cell = getItemCell()
+                
+                let item = NSEntityDescription.entity(forEntityName: "Item", in: CoreDataHelper.managedContext)
+                let newItem = NSManagedObject(entity: item!, insertInto: CoreDataHelper.managedContext) as! Item
+                newItem.setValue(cell.title! as NSString ?? "", forKey: "itemTitle")
+                newItem.setValue(cell.itemDescriptionTextView.text as NSString  ?? "", forKey: "itemDescription")
+                newItem.setValue(cell.seconds as Double ?? 60.0, forKey: "itemTime")
+                do{
+                    try CoreDataHelper.managedContext.save()
+                    items.append(newItem)
+                }
+                catch{
+                    print("count not save. \(error)")
+                }
+                
+            }
+            
+            //            for item in items {
+            //                newTask.mutableSetValue(forKey: "items").add(item)
+            //            }
+            
+            print(CoreDataHelper.retrieveTask())
+            
+            
+            
+            //            let newTask = self.task ?? CoreDataHelper.newTask()
+            //
+            //
+            //            newTask.title = taskTitle.text ?? ""
+            //            newTask.items = items
+            //            newTask.modificationTime = Date() as NSDate
+            //            CoreDataHelper.saveTask()
         }
     }
 }
@@ -143,7 +151,9 @@ extension DisplayTaskViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete && items.count > 1 {
-            items.remove(at: indexPath.row)
+            //items.remove(at: indexPath.row)
+            let deleteItem = items[indexPath.row]
+            task?.removeFromItems(deleteItem)
         }
         else{
             let alertController = UIAlertController(title: "cannot delete item", message:
@@ -174,8 +184,8 @@ extension DisplayTaskViewController: UITableViewDataSource {
             if addBlankCell == true{
                 if indexPath.row < items.count{
                     let cell = tableView.dequeueReusableCell(withIdentifier: "itemCell", for: indexPath) as! ItemTableViewCell
-                    cell.itemTitleTextField.text = items[indexPath.row].itemTitle ?? ""
-                    cell.itemDescriptionTextView.text = items[indexPath.row].itemDescription ?? ""
+                    cell.itemTitleTextField.text = items[indexPath.row].itemTitle as! String ?? ""
+                    cell.itemDescriptionTextView.text = items[indexPath.row].itemDescription as! String ?? ""
                     cell.itemTimePicker.countDownDuration = items[indexPath.row].itemTime ?? 60.0
                     cell.itemTitleTextField.delegate = cell
                     return cell
@@ -188,8 +198,8 @@ extension DisplayTaskViewController: UITableViewDataSource {
             }
             else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "itemCell", for: indexPath) as! ItemTableViewCell
-                cell.itemTitleTextField.text = items[indexPath.row].itemTitle ?? ""
-                cell.itemDescriptionTextView.text = items[indexPath.row].itemDescription ?? ""
+                cell.itemTitleTextField.text = items[indexPath.row].itemTitle as! String ?? ""
+                cell.itemDescriptionTextView.text = items[indexPath.row].itemDescription as! String ?? ""
                 cell.itemTimePicker.countDownDuration = items[indexPath.row].itemTime ?? 60.0
                 cell.itemTitleTextField.delegate = cell
                 return cell

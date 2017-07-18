@@ -4,14 +4,18 @@
         <attribute name="itemDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="itemTime" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="itemTitle" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="task" maxCount="1" deletionRule="Nullify" destinationEntity="Task" inverseName="items" inverseEntity="Task" syncable="YES"/>
     </entity>
     <entity name="Task" representedClassName=".Task" syncable="YES" codeGenerationType="class">
-        <attribute name="itemsArray" optional="YES" attributeType="Transformable" customClassName="NSArray" syncable="YES"/>
         <attribute name="modificationTime" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="items" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Item" inverseName="task" inverseEntity="Item" syncable="YES"/>
+        <fetchedProperty name="fetchItems" optional="YES" syncable="YES">
+            <fetchRequest name="fetchedPropertyFetchRequest" entity="Task"/>
+        </fetchedProperty>
     </entity>
     <elements>
-        <element name="Item" positionX="234" positionY="144" width="128" height="90"/>
-        <element name="Task" positionX="243" positionY="180" width="128" height="90"/>
+        <element name="Task" positionX="18" positionY="120" width="128" height="116"/>
+        <element name="Item" positionX="261" positionY="225" width="128" height="103"/>
     </elements>
 </model>

@@ -15,7 +15,6 @@
 		82F312461F181DB6003D00F2 /* ListTasksTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F312441F181DB6003D00F2 /* ListTasksTableViewCell.swift */; };
 		82F3124F1F181DD1003D00F2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82F3124D1F181DD1003D00F2 /* LaunchScreen.storyboard */; };
 		82F312501F181DD1003D00F2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82F3124E1F181DD1003D00F2 /* Main.storyboard */; };
-		82F312561F182CF6003D00F2 /* AddItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F312551F182CF6003D00F2 /* AddItemTableViewCell.swift */; };
 		82F3125A1F188038003D00F2 /* DisplayTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F312591F188038003D00F2 /* DisplayTaskViewController.swift */; };
 		82F3125C1F188049003D00F2 /* ListTasksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F3125B1F188049003D00F2 /* ListTasksViewController.swift */; };
 		82FFCF691F188D9100EB75E0 /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82FFCF681F188D9100EB75E0 /* ItemTableViewCell.swift */; };
@@ -33,7 +32,6 @@
 		82F312441F181DB6003D00F2 /* ListTasksTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListTasksTableViewCell.swift; path = Views/ListTasksTableViewCell.swift; sourceTree = "<group>"; };
 		82F3124D1F181DD1003D00F2 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Storyboards/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		82F3124E1F181DD1003D00F2 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Storyboards/Main.storyboard; sourceTree = "<group>"; };
-		82F312551F182CF6003D00F2 /* AddItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddItemTableViewCell.swift; path = Views/AddItemTableViewCell.swift; sourceTree = "<group>"; };
 		82F312591F188038003D00F2 /* DisplayTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DisplayTaskViewController.swift; path = "View Controllers/DisplayTaskViewController.swift"; sourceTree = "<group>"; };
 		82F3125B1F188049003D00F2 /* ListTasksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListTasksViewController.swift; path = "View Controllers/ListTasksViewController.swift"; sourceTree = "<group>"; };
 		82FFCF681F188D9100EB75E0 /* ItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItemTableViewCell.swift; path = Views/ItemTableViewCell.swift; sourceTree = "<group>"; };
@@ -89,7 +87,6 @@
 			children = (
 				82FFCF681F188D9100EB75E0 /* ItemTableViewCell.swift */,
 				82F312441F181DB6003D00F2 /* ListTasksTableViewCell.swift */,
-				82F312551F182CF6003D00F2 /* AddItemTableViewCell.swift */,
 				826A3C101F1D5A5E0018137B /* AddItemView.swift */,
 			);
 			name = Views;
@@ -211,7 +208,6 @@
 			files = (
 				82F3125C1F188049003D00F2 /* ListTasksViewController.swift in Sources */,
 				82FFCF691F188D9100EB75E0 /* ItemTableViewCell.swift in Sources */,
-				82F312561F182CF6003D00F2 /* AddItemTableViewCell.swift in Sources */,
 				82F312201F180ED3003D00F2 /* AppDelegate.swift in Sources */,
 				826A3C131F1D7A950018137B /* CoreDataHelper.swift in Sources */,
 				82F3125A1F188038003D00F2 /* DisplayTaskViewController.swift in Sources */,
