@@ -10,7 +10,7 @@ import UIKit
 
 class ListTasksTableViewCell: UITableViewCell {
     
-    static let height: CGFloat = 100
+    static let height: CGFloat = 150
     
     @IBOutlet weak var taskTitleLabel: UILabel!
     
