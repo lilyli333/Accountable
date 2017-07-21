@@ -64,6 +64,12 @@ class CoreDataHelper {
         return []
     }
     
+    static public func getItemsArray(task: Task)-> [Item] {
+        let allItems = task.items.sortedArray(using: [NSSortDescriptor(key: "order", ascending: true, selector: #selector(NSNumber.compare(_:)))]) as! [Item]
+        print(allItems)
+        return allItems
+    }
+    
     //    static func retrieveItem() ->  [Item] {
     //        let fetchRequest = NSFetchRequest<Item>(entityName: "Item")
     //        do {

@@ -34,19 +34,11 @@ class ListViewController: UIViewController {
         let taskViewController = segue.destination as! TaskViewController
         
         if let identifier = segue.identifier {
-            if identifier == "displayTask" {
+            if identifier == "showTask" {
                 print("Table view cell tapped")
                 let indexPath = tasksListTableView.indexPathForSelectedRow!
                 let task = tasks[indexPath.row]
                 taskViewController.task = task
-            } else if identifier == "addNewTask" {
-                let newtask = NSEntityDescription.entity(forEntityName: "Task", in: CoreDataHelper.managedContext)
-                let task = NSManagedObject(entity: newtask!, insertInto: CoreDataHelper.managedContext) as! Task
-                task.setValue("---", forKey: "title")
-                task.setValue(Date() as NSDate, forKey: "modificationTime")
-                task.setValue(0000000000, forKey: "phoneNumber")
-                taskViewController.task = task
-                print(task)
             }
         }
     }

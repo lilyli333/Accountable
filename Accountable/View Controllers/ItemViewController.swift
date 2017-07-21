@@ -56,8 +56,8 @@ class ItemViewController : UIViewController {
         seconds = itemTimePicker.countDownDuration
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let taskViewController = segue.destination as! TaskViewController
-        if segue.identifier == "saveNewItem" {
+        let taskViewController = segue.destination as! EditTaskViewController
+        if segue.identifier == "saveItem" {
             if let item = item{
                 item.setValue(itemTitleTextField.text ?? "---", forKey: "itemTitle")
                 item.setValue(itemDescriptionTextView.text ?? "", forKey: "itemDescription")

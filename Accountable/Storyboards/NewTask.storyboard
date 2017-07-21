@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="nj5-7e-15g">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="CDO-FP-4JP">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -9,35 +9,18 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--new-->
-        <scene sceneID="jz2-NB-aA5">
+        <!--listViewController-->
+        <scene sceneID="OEZ-k1-cXB">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="nj5-7e-15g" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" tag="1" title="new" id="Tse-pj-QpH"/>
-                    <toolbarItems/>
-                    <nil key="simulatedTopBarMetrics"/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="YWO-ae-l4z">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="ML9-6L-kVm">
-                        <rect key="frame" x="0.0" y="623" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </toolbar>
-                    <connections>
-                        <segue destination="4kE-50-M9L" kind="show" id="p1r-YE-esd"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="6bu-tY-Ht5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="Tasks" referencedIdentifier="listViewController" id="UsU-Lj-E2Z" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="f6B-Os-r7M" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2588" y="997.15142428785612"/>
+            <point key="canvasLocation" x="4978" y="429"/>
         </scene>
-        <!--Task View Controller-->
+        <!--New Task View Controller-->
         <scene sceneID="VuS-jD-Aid">
             <objects>
-                <viewController id="4kE-50-M9L" customClass="TaskViewController" customModule="Accountable" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="4kE-50-M9L" customClass="NewTaskViewController" customModule="Accountable" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8oD-78-mx2"/>
                         <viewControllerLayoutGuide type="bottom" id="ksl-tx-evx"/>
@@ -97,15 +80,12 @@
                                         <connections>
                                             <outlet property="itemTimeLabel" destination="KJP-eR-DIP" id="jMH-ya-N6s"/>
                                             <outlet property="itemTitleLabel" destination="adc-Po-iUY" id="Gg2-IF-M6a"/>
-                                            <segue destination="VwV-cB-P3c" kind="show" identifier="showItem" id="ksU-ry-d7E">
-                                                <nil key="action"/>
-                                            </segue>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
-                                    <outlet property="dataSource" destination="4kE-50-M9L" id="Bnn-JE-ihK"/>
-                                    <outlet property="delegate" destination="4kE-50-M9L" id="JAy-GZ-fky"/>
+                                    <outlet property="dataSource" destination="4kE-50-M9L" id="Rhs-oA-VsP"/>
+                                    <outlet property="delegate" destination="4kE-50-M9L" id="XaE-ft-k7C"/>
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oqc-f6-ORD">
@@ -157,9 +137,7 @@
                                     <color key="titleColor" red="0.99937158820000005" green="0.64719891549999997" blue="0.51220887900000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="VwV-cB-P3c" kind="show" identifier="addNewItem" id="MBD-qU-EHQ">
-                                        <nil key="action"/>
-                                    </segue>
+                                    <action selector="addItemTapped:" destination="4kE-50-M9L" eventType="touchUpInside" id="b4n-SW-YYm"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7nk-0J-j1E">
@@ -178,9 +156,6 @@
                                         <state key="normal" title="save task">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
-                                        <connections>
-                                            <segue destination="p3h-25-Bxi" kind="unwind" identifier="saveTask" unwindAction="prepareForUnwindWithSegue:" id="fCy-lU-Pct"/>
-                                        </connections>
                                     </button>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="task name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zdE-Wc-MZi">
                                         <rect key="frame" x="20" y="40" width="335" height="45"/>
@@ -224,22 +199,23 @@
                             <constraint firstItem="ksl-tx-evx" firstAttribute="top" secondItem="WSe-9r-elh" secondAttribute="bottom" id="ty4-0x-EIJ"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="qnh-LD-N3f"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
-                        <outlet property="itemsListTableViwe" destination="WSe-9r-elh" id="BLU-sJ-MKF"/>
-                        <outlet property="phoneNumberTextField" destination="BIp-Ra-78h" id="cgl-HK-OkK"/>
-                        <outlet property="taskNameTextField" destination="zdE-Wc-MZi" id="vzi-hw-VCf"/>
+                        <outlet property="itemsTableView" destination="WSe-9r-elh" id="cnc-uG-hc5"/>
+                        <outlet property="phoneNumberTextField" destination="BIp-Ra-78h" id="srG-OO-Ul6"/>
+                        <outlet property="taskNameTextField" destination="zdE-Wc-MZi" id="1gC-U0-Kgc"/>
+                        <segue destination="VwV-cB-P3c" kind="show" identifier="addNewItem" id="9av-d6-JX3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EpT-3Q-Iuy" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="p3h-25-Bxi" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3474" y="995"/>
+            <point key="canvasLocation" x="4412" y="994.45277361319347"/>
         </scene>
-        <!--Item View Controller-->
+        <!--New Item View Controller-->
         <scene sceneID="4rx-A3-wFy">
             <objects>
-                <viewController id="VwV-cB-P3c" customClass="ItemViewController" customModule="Accountable" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="VwV-cB-P3c" customClass="NewItemViewController" customModule="Accountable" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Aed-aw-jSi"/>
                         <viewControllerLayoutGuide type="bottom" id="k3w-cP-vWf"/>
@@ -261,7 +237,7 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
-                                                    <segue destination="yw9-iE-0Bk" kind="unwind" identifier="cancelItem" unwindAction="prepareForUnwindWithSegue:" id="Cbt-3o-J2J"/>
+                                                    <segue destination="yw9-iE-0Bk" kind="unwind" unwindAction="unwindSegueFor:sender:" id="xaQ-zG-230"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0A5-0Y-Ge3">
@@ -271,7 +247,7 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
-                                                    <segue destination="yw9-iE-0Bk" kind="unwind" identifier="saveNewItem" unwindAction="prepareForUnwindWithSegue:" id="FOk-Xn-rpz"/>
+                                                    <segue destination="yw9-iE-0Bk" kind="unwind" identifier="saveNewItem" unwindAction="prepareForUnwindWithSegue:" id="lo7-0v-LqO"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -298,15 +274,15 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RXm-gm-jTL">
-                                <rect key="frame" x="0.0" y="120" width="375" height="503"/>
+                                <rect key="frame" x="0.0" y="120" width="375" height="498"/>
                                 <subviews>
                                     <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="countDownTimer" countDownDuration="1" minuteInterval="1" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n3W-hh-zhQ">
-                                        <rect key="frame" x="75" y="225" width="225" height="248"/>
+                                        <rect key="frame" x="75" y="225" width="225" height="243"/>
                                         <date key="date" timeIntervalSinceReferenceDate="521625642.04706597">
                                             <!--2017-07-13 08:00:42 +0000-->
                                         </date>
                                         <connections>
-                                            <action selector="itemTimePickerAction:" destination="VwV-cB-P3c" eventType="valueChanged" id="J0e-oU-flD"/>
+                                            <action selector="itemTimePickerAction:" destination="VwV-cB-P3c" eventType="valueChanged" id="Bht-8S-vsr"/>
                                         </connections>
                                     </datePicker>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="item title" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3w6-GZ-Fh5">
@@ -357,18 +333,35 @@
                     </view>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
-                        <outlet property="itemDescriptionTextView" destination="7hB-Mx-85w" id="PMt-wd-xFh"/>
-                        <outlet property="itemTimePicker" destination="n3W-hh-zhQ" id="DMy-c2-uyY"/>
-                        <outlet property="itemTitleTextField" destination="3w6-GZ-Fh5" id="aPs-en-AaI"/>
+                        <outlet property="itemDescriptionTextView" destination="7hB-Mx-85w" id="RI1-O7-9fM"/>
+                        <outlet property="itemTimePicker" destination="n3W-hh-zhQ" id="Vpk-6R-cpA"/>
+                        <outlet property="itemTitleTextField" destination="3w6-GZ-Fh5" id="dBn-fG-8It"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dOh-Yf-YgJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="yw9-iE-0Bk" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4266" y="997"/>
+            <point key="canvasLocation" x="5335" y="994"/>
+        </scene>
+        <!--new-->
+        <scene sceneID="Y2k-8L-Fl7">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="CDO-FP-4JP" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" tag="1" title="new" id="UrN-pt-6Q3"/>
+                    <toolbarItems/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="kuQ-9m-0MO">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="4kE-50-M9L" kind="relationship" relationship="rootViewController" id="5VB-dm-jAY"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NbY-Vf-pTW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3472.8000000000002" y="994.45277361319347"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="ksU-ry-d7E"/>
-    </inferredMetricsTieBreakers>
 </document>

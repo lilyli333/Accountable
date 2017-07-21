@@ -32,7 +32,7 @@ class TimerViewController: UIViewController {
             
             self.present(alertController, animated: true, completion: nil)
             alertController.dismiss(animated: true, completion: nil)
-
+            
             
             performSegue(withIdentifier: "toTasks", sender: self)
         }
@@ -47,17 +47,26 @@ class TimerViewController: UIViewController {
         timer = Timer.scheduledTimer(timeInterval: 1, target: self,   selector: (#selector(self.updateTimer)), userInfo: nil, repeats: true)
     }
     func updateTimer() {
-        if seconds < 1 {
-            timer.invalidate()
-            items.remove(at: 0)
-            print(items.count)
-            seconds = getTime()
-            
-            runTimer()
-            listTableView.reloadData()
-        } else {
-            seconds -= 1
-            timeLabel.text = ToStringHelper.timeString(time: TimeInterval(seconds))
+        if getTime() == nil{
+            let alertController = UIAlertController(title: "finished task", message:
+                "", preferredStyle: UIAlertControllerStyle.alert)
+            alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
+            self.present(alertController, animated: true, completion: nil)
+            return
+        }
+        else{
+            if seconds < 1 {
+                timer.invalidate()
+                items.remove(at: 0)
+                print(items.count)
+                seconds = getTime()
+                
+                runTimer()
+                listTableView.reloadData()
+            } else {
+                seconds -= 1
+                timeLabel.text = ToStringHelper.timeString(time: TimeInterval(seconds))
+            }
         }
     }
     func getTime() -> Int {
@@ -73,7 +82,7 @@ extension TimerViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "itemCell", for: indexPath) as! ItemTableViewCell
         let row = indexPath.row
-        cell.itemTimeLabel.text = "\(ToStringHelper.timeString(time: TimeInterval(seconds)))"
+        cell.itemTimeLabel.text = "\(ToStringHelper.timeString(time: TimeInterval(items[row].itemTime)))"
         cell.itemTitleLabel.text = items[row].itemTitle
         return cell
     }
