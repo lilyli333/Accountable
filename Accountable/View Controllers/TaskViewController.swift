@@ -19,7 +19,7 @@ class TaskViewController: UIViewController {
     var task: Task?
     var items = [Item]()
     
-    var isNewTask: Bool = true
+    var isNewTask: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +39,9 @@ class TaskViewController: UIViewController {
         }
     }
     
+    @IBAction func startTaskButtonTapped(_ sender: UIButton) {
+        performSegue(withIdentifier: "startTask", sender: self)
+    }
     public func getItemsArray(task: Task)-> [Item] {
         let allItems = task.items.sortedArray(using: [NSSortDescriptor(key: "order", ascending: true, selector: #selector(NSNumber.compare(_:)))]) as! [Item]
         print(allItems)
@@ -84,8 +87,10 @@ class TaskViewController: UIViewController {
                 }
                 print("saving the task:")
                 listViewController.tasksListTableView.reloadData()
-                if isNewTask == false {
+                if isNewTask == true {
+                    print("ello")
                     listViewController.tasks.append(task!)
+                    listViewController.tasks = CoreDataHelper.retrieveTask()
                     listViewController.tasksListTableView.reloadData()
                 }
 
@@ -98,6 +103,16 @@ class TaskViewController: UIViewController {
                 return
             }
         }
+        else if segue.identifier == "addNewItem" {
+            task?.setValue(taskNameTextField.text, forKey: "title")
+            task?.setValue(Int(phoneNumberTextField.text!), forKey: "phoneNumber")
+
+        }
+        else if segue.identifier == "startTask" {
+            let timerViewController = segue.destination as! TimerViewController
+            timerViewController.task = task
+            timerViewController.items = items
+        }
     }
     
     @IBAction func prepareForUnwind(segue: UIStoryboardSegue) {
@@ -108,21 +123,22 @@ class TaskViewController: UIViewController {
 
 extension TaskViewController: UITableViewDataSource {
     
-    //for deleting a cell of item UNCOMMENT LATERRRRRRRR
-    //    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-    //        if editingStyle == .delete && items.count > 1 {
-    //            //items.remove(at: indexPath.row)
-    //            let deleteItem = items[indexPath.row]
-    //            task?.removeFromItems(deleteItem)
-    //        }
-    //        else{
-    //            let alertController = UIAlertController(title: "cannot delete item", message:
-    //                "there has to be 1+ item in task!", preferredStyle: UIAlertControllerStyle.alert)
-    //            alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
-    //
-    //            self.present(alertController, animated: true, completion: nil)
-    //        }
-    //    }
+//    //for deleting a cell of item UNCOMMENT LATERRRRRRRR
+//        func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+//            if editingStyle == .delete && items.count > 1 {
+//                //items.remove(at: indexPath.row)
+//                let deleteItem = items[indexPath.row]
+//                task?.removeFromItems(deleteItem)
+//                CoreDataHelper.saveToCoreData()
+//            }
+//            else{
+//                let alertController = UIAlertController(title: "cannot delete item", message:
+//                    "there has to be 1+ item in task!", preferredStyle: UIAlertControllerStyle.alert)
+//                alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
+//    
+//                self.present(alertController, animated: true, completion: nil)
+//            }
+//        }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         items = getItemsArray(task: task!)
@@ -132,7 +148,7 @@ extension TaskViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "itemCell", for: indexPath) as! ItemTableViewCell
         let row = indexPath.row
-        cell.itemTimeLabel.text = "\(items[row].itemTime) seconds"
+        cell.itemTimeLabel.text = "\(ToStringHelper.toString(time: TimeInterval(items[row].itemTime)))"
         cell.itemTitleLabel.text = items[row].itemTitle
         return cell
     }

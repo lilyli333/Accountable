@@ -59,22 +59,25 @@ class ListViewController: UIViewController {
 extension ListViewController: UITableViewDataSource {
     
 //    //FOR DELETING TASK, UNCOMMENT LATER
-//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-//        if editingStyle == .delete {
-//            //CoreDataHelper.deleteTask(task: tasks[indexPath.row])
-//            CoreDataHelper.managedContext.delete(tasks[indexPath.row])
-//            print(tasks)
-//            tasks = CoreDataHelper.retrieveTask()
-//            print(tasks.count)
-//            print(CoreDataHelper.retrieveTask())
-//            tasksListTableView.reloadData()
-//        }
-//    }
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            //CoreDataHelper.deleteTask(task: tasks[indexPath.row])
+            print(tasks.count)
+            let deletingTask = tasks[indexPath.row]
+            print("deleting:")
+            print(deletingTask)
+            CoreDataHelper.managedContext.delete(deletingTask)
+            tasks = CoreDataHelper.retrieveTask()
+            tasksListTableView.reloadData()
+            print(tasks.count)
+            print(CoreDataHelper.retrieveTask().count)
+            CoreDataHelper.saveToCoreData()
+        }
+    }
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         print("the count of tasks is: \(tasks.count)")
-        tasks = CoreDataHelper.retrieveTask()
         return tasks.count
     }
     

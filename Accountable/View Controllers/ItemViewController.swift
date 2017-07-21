@@ -25,6 +25,9 @@ class ItemViewController : UIViewController {
         super.viewDidLoad()
     }
     
+    //tap gesture recognize
+    //dismiss keyboard func
+    
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true;

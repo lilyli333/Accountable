@@ -25,7 +25,7 @@ class CoreDataHelper {
     //    }
     
     //
-        static func saveTask() {
+        static func saveToCoreData() {
             do {
                 try managedContext.save()
             } catch let error as NSError {
@@ -56,8 +56,8 @@ class CoreDataHelper {
         let fetchRequest = NSFetchRequest<Task>(entityName: "Task")
         do {
             let results = try managedContext.fetch(fetchRequest)
-            //results = results.sorted(by: { $0.modificationTime.compare($1.modificationTime as Date) == .orderedDescending})
-            return results
+            return results.sorted(by: { $0.modificationTime.compare($1.modificationTime as Date) == .orderedDescending})
+            //return results
         } catch let error as NSError {
             print("Could not fetch \(error)")
         }
