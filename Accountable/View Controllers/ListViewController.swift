@@ -13,9 +13,10 @@ class ListViewController: UIViewController {
     
     @IBOutlet weak var tasksListTableView: UITableView!
     
-    var tasks = [Task]() {
+    var tasks = [Task](){
         didSet {
-            tasksListTableView.reloadData()
+            //tasks = CoreDataHelper.retrieveTask()
+            //tasksListTableView.reloadData()
         }
     }
 
@@ -76,6 +77,7 @@ extension ListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "listTasksTableViewCell", for: indexPath) as! ListTasksTableViewCell
         let task = tasks[indexPath.row]
+        print(task)
         cell.taskTitleLabel.text = task.title
         cell.taskModificationTimeLabel.text = task.modificationTime.convertToString()
         return cell

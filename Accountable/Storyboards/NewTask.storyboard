@@ -15,7 +15,7 @@
                 <viewControllerPlaceholder storyboardName="Tasks" referencedIdentifier="listViewController" id="UsU-Lj-E2Z" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f6B-Os-r7M" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4978" y="429"/>
+            <point key="canvasLocation" x="5026" y="508"/>
         </scene>
         <!--New Task View Controller-->
         <scene sceneID="VuS-jD-Aid">
@@ -40,22 +40,13 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="item title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="adc-Po-iUY">
-                                                    <rect key="frame" x="10" y="8" width="102.5" height="40"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="item title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="adc-Po-iUY">
+                                                    <rect key="frame" x="10" y="15" width="102.5" height="40"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="qnY-1L-JMb"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                                     <color key="textColor" red="0.99937158820000005" green="0.64719891549999997" blue="0.51220887900000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="60 min" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KJP-eR-DIP">
-                                                    <rect key="frame" x="10" y="56" width="62" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="25" id="mkb-jU-qID"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="italicSystem" pointSize="20"/>
-                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&gt;" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dJQ-53-GO6">
@@ -68,18 +59,39 @@
                                                     <color key="textColor" red="0.99937158820000005" green="0.64719891549999997" blue="0.51220887900000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Im-dc-a6E">
+                                                    <rect key="frame" x="0.0" y="95" width="375" height="5"/>
+                                                    <color key="backgroundColor" red="0.99937158820000005" green="0.64719891549999997" blue="0.51220887900000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="5" id="5E4-xA-cSC"/>
+                                                    </constraints>
+                                                </view>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="60 min" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KJP-eR-DIP">
+                                                    <rect key="frame" x="10" y="55" width="62" height="25"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="25" id="mkb-jU-qID"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="italicSystem" pointSize="20"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="8Im-dc-a6E" firstAttribute="leading" secondItem="vSl-S6-vin" secondAttribute="leading" id="5sv-CM-Tb0"/>
+                                                <constraint firstItem="adc-Po-iUY" firstAttribute="top" secondItem="vSl-S6-vin" secondAttribute="top" constant="15" id="6Wi-YL-djS"/>
                                                 <constraint firstAttribute="trailing" secondItem="dJQ-53-GO6" secondAttribute="trailing" id="9cC-i3-rM4"/>
                                                 <constraint firstItem="adc-Po-iUY" firstAttribute="leading" secondItem="vSl-S6-vin" secondAttribute="leading" constant="10" id="CoT-zd-mmf"/>
-                                                <constraint firstItem="KJP-eR-DIP" firstAttribute="top" secondItem="adc-Po-iUY" secondAttribute="bottom" constant="10" id="IPi-uu-cxP"/>
+                                                <constraint firstItem="8Im-dc-a6E" firstAttribute="top" secondItem="KJP-eR-DIP" secondAttribute="bottom" constant="15" id="Fiv-4r-fqd"/>
+                                                <constraint firstAttribute="bottom" secondItem="8Im-dc-a6E" secondAttribute="bottom" id="GGN-hb-uQl"/>
                                                 <constraint firstItem="dJQ-53-GO6" firstAttribute="centerY" secondItem="vSl-S6-vin" secondAttribute="centerY" id="e47-x4-4W3"/>
+                                                <constraint firstAttribute="trailing" secondItem="8Im-dc-a6E" secondAttribute="trailing" id="hHC-tS-NDh"/>
                                                 <constraint firstItem="KJP-eR-DIP" firstAttribute="leading" secondItem="vSl-S6-vin" secondAttribute="leading" constant="10" id="tyF-jq-lwC"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="itemTimeLabel" destination="KJP-eR-DIP" id="jMH-ya-N6s"/>
                                             <outlet property="itemTitleLabel" destination="adc-Po-iUY" id="Gg2-IF-M6a"/>
+                                            <segue destination="VwV-cB-P3c" kind="show" identifier="displayNewItem" id="C8v-58-o8W"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -156,6 +168,9 @@
                                         <state key="normal" title="save task">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <segue destination="UsU-Lj-E2Z" kind="show" identifier="saveNewTask" id="bzZ-F4-gMh"/>
+                                        </connections>
                                     </button>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="task name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zdE-Wc-MZi">
                                         <rect key="frame" x="20" y="40" width="335" height="45"/>
@@ -237,7 +252,7 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
-                                                    <segue destination="yw9-iE-0Bk" kind="unwind" unwindAction="unwindSegueFor:sender:" id="xaQ-zG-230"/>
+                                                    <segue destination="yw9-iE-0Bk" kind="unwind" identifier="cancelNewItem" unwindAction="unwindSegueFor:sender:" id="vk1-BA-URJ"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0A5-0Y-Ge3">
@@ -247,7 +262,7 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
-                                                    <segue destination="yw9-iE-0Bk" kind="unwind" identifier="saveNewItem" unwindAction="prepareForUnwindWithSegue:" id="lo7-0v-LqO"/>
+                                                    <segue destination="yw9-iE-0Bk" kind="unwind" identifier="saveNewItem" unwindAction="unwindSegueFor:sender:" id="5UF-gk-j9Q"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -334,6 +349,7 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="itemDescriptionTextView" destination="7hB-Mx-85w" id="RI1-O7-9fM"/>
+                        <outlet property="itemNumLabel" destination="RaT-ho-uFV" id="BgX-xf-EHE"/>
                         <outlet property="itemTimePicker" destination="n3W-hh-zhQ" id="Vpk-6R-cpA"/>
                         <outlet property="itemTitleTextField" destination="3w6-GZ-Fh5" id="dBn-fG-8It"/>
                     </connections>
@@ -364,4 +380,7 @@
             <point key="canvasLocation" x="3472.8000000000002" y="994.45277361319347"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="C8v-58-o8W"/>
+    </inferredMetricsTieBreakers>
 </document>

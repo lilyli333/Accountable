@@ -70,7 +70,10 @@ class TimerViewController: UIViewController {
         }
     }
     func getTime() -> Int {
-        return Int(items[0].itemTime)
+        //guard let _ = items[0].itemTime else{ return 0}
+            return Int(items[0].itemTime)
+
+        
     }
 }
 

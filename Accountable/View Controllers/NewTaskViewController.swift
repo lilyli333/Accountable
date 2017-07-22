@@ -16,8 +16,6 @@ class NewTaskViewController: UIViewController {
     }
     
     @IBAction func unwindSegue(for segue: UIStoryboardSegue, sender: Any) {
-    
-    
     }
     
     
@@ -33,6 +31,11 @@ class NewTaskViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let newtask = NSEntityDescription.entity(forEntityName: "Task", in: CoreDataHelper.managedContext)
+        task = NSManagedObject(entity: newtask!, insertInto: CoreDataHelper.managedContext) as! Task
+        task?.setValue("", forKey: "title")
+        task?.setValue(Date(), forKey: "modificationTime")
+        task?.setValue(0, forKey: "phoneNumber")
     }
     
     override func didReceiveMemoryWarning() {
@@ -41,53 +44,46 @@ class NewTaskViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        let newtask = NSEntityDescription.entity(forEntityName: "Task", in: CoreDataHelper.managedContext)
-        task = NSManagedObject(entity: newtask!, insertInto: CoreDataHelper.managedContext) as! Task
-
-    
-        task?.setValue("---", forKey: "title")
-        task?.setValue(Date() as NSDate, forKey: "modificationTime")
-        task?.setValue(0000000000, forKey: "phoneNumber")
-        
-        phoneNumberTextField.text = "\(task?.phoneNumber)"
-        taskNameTextField.text = task?.title
+                phoneNumberTextField.text = ""
+        taskNameTextField.text = ""
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showItem" {
+        if segue.identifier == "displayNewItem" {
             let itemViewController = segue.destination as! NewItemViewController
             let indexPath = itemsTableView.indexPathForSelectedRow!
             let item = items[indexPath.row]
             itemViewController.item = item
         }
-        else if segue.identifier == "saveTask" {
+        else if segue.identifier == "saveNewTask" {
             let listViewController = segue.destination as! ListViewController
             let number = phoneNumberTextField.text!
             
             if let number = Int(number) {
-//                if number < 1000000000 {
-//                    let alertController = UIAlertController(title: "invalid phone number", message:
-//                        "", preferredStyle: UIAlertControllerStyle.alert)
-//                    alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
-//                    self.present(alertController, animated: true, completion: nil)
-//                    return
-//                }
-//                else if taskNameTextField.text!.isEmpty{
-//                    let alertController = UIAlertController(title: "cannot save task", message:
-//                        "required field cannot be empty", preferredStyle: UIAlertControllerStyle.alert)
-//                    alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
-//                    self.present(alertController, animated: true, completion: nil)
-//                    return
-//                }
+                if number < 1000000000 {
+                    let alertController = UIAlertController(title: "invalid phone number", message:
+                        "", preferredStyle: UIAlertControllerStyle.alert)
+                    alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
+                    self.present(alertController, animated: true, completion: nil)
+                    return
+                }
+                else if taskNameTextField.text!.isEmpty{
+                    let alertController = UIAlertController(title: "cannot save task", message:
+                        "required field cannot be empty", preferredStyle: UIAlertControllerStyle.alert)
+                    alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
+                    self.present(alertController, animated: true, completion: nil)
+                    return
+                }
+        
                 task?.setValue(Date(), forKey: "modificationTime")
-                task?.setValue(taskNameTextField.text, forKey: "title")
-                task?.setValue(number, forKey: "phoneNumber")
+                task?.setValue(taskNameTextField.text ?? "---", forKey: "title")
+                task?.setValue(Int(phoneNumberTextField.text!), forKey: "phoneNumber")
+//                listViewController.tasks.append(task!)
+                print(task!)
                 CoreDataHelper.saveToCoreData()
-                print(task)
-                listViewController.tasks.append(task!)
                 listViewController.tasks = CoreDataHelper.retrieveTask()
-                listViewController.tasksListTableView.reloadData()
+                
+                print(task!)
                 
             }
             else{
@@ -100,31 +96,29 @@ class NewTaskViewController: UIViewController {
         }
         else if segue.identifier == "addNewItem" {
             print(taskNameTextField.text!)
+            let newItemViewController = segue.destination as! NewItemViewController
+//            task?.title = taskNameTextField.text!
+//            task?.phoneNumber = phoneNumberTextField.text! as! Int64
+//            task?.modificationTime = Date() as NSDate
             task?.setValue(taskNameTextField.text, forKey: "title")
-            task?.setValue(Int(phoneNumberTextField.text!), forKey: "phoneNumber")
-            print(task)
+            task?.setValue(Int(phoneNumberTextField.text!) ?? 0000000000, forKey: "phoneNumber")
+            task?.setValue(Date(), forKey: "modificationTime")
+            CoreDataHelper.saveToCoreData()
+            newItemViewController.itemNum = items.count + 1
         }
     }
 }
 
 extension NewTaskViewController: UITableViewDataSource {
     
-    //    //for deleting a cell of item UNCOMMENT LATERRRRRRRR
-    //        func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-    //            if editingStyle == .delete && items.count > 1 {
-    //                //items.remove(at: indexPath.row)
-    //                let deleteItem = items[indexPath.row]
-    //                task?.removeFromItems(deleteItem)
-    //                CoreDataHelper.saveToCoreData()
-    //            }
-    //            else{
-    //                let alertController = UIAlertController(title: "cannot delete item", message:
-    //                    "there has to be 1+ item in task!", preferredStyle: UIAlertControllerStyle.alert)
-    //                alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
-    //
-    //                self.present(alertController, animated: true, completion: nil)
-    //            }
-    //        }
+//        //for deleting a cell of item UNCOMMENT LATERRRRRRRR
+//            func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+//                    items.remove(at: indexPath.row)
+//                    let deleteItem = items[indexPath.row]
+//                    task?.removeFromItems(deleteItem)
+//                    CoreDataHelper.saveToCoreData()
+//                print(task!)
+//            }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         print(items.count)
