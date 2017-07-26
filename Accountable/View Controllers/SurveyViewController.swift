@@ -13,11 +13,13 @@ class SurveyViewController: UIViewController, MFMessageComposeViewControllerDele
     
     var task: Task?
     var item: Item?
-
+    var items = [Item]()
+    var didFinish: Bool?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -26,7 +28,7 @@ class SurveyViewController: UIViewController, MFMessageComposeViewControllerDele
         if (MFMessageComposeViewController.canSendText()) {
             let controller = MFMessageComposeViewController()
             controller.body = text
-            controller.recipients = ["\(task?.phoneNumber)"]
+            controller.recipients = ["\(task!.phoneNumber)"]
             controller.messageComposeDelegate = self
             self.present(controller, animated: true, completion: nil)
         }
@@ -36,17 +38,34 @@ class SurveyViewController: UIViewController, MFMessageComposeViewControllerDele
     }
     
     func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
-        
+        controller.dismiss(animated: true, completion: nil)
+        if didFinish == true{
+            performSegue(withIdentifier: "showCamera", sender: self)
+        }
+        else {
+            performSegue(withIdentifier: "unfinishedTask", sender: self)
+        }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showCamera" {
+            let cameraViewController = segue.destination as! CameraViewController
+            cameraViewController.task = task!
+            cameraViewController.items = items
+        }
+    }
+    
     @IBAction func yesButtonTapped(_ sender: Any) {
         let str = "\(User.user) has successfully completed the task: \(item!.itemTitle). A picture of the product coming soon!"
         sendText(text: str)
         print(str)
+        didFinish = true
     }
     
     @IBAction func noButtonTapped(_ sender: Any) {
         let str = "\(User.user) has NOT completed task: \(item!.itemTitle)."
         sendText(text: str)
         print(str)
+        didFinish = false
     }
 }

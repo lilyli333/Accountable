@@ -38,32 +38,40 @@ class TimerViewController: UIViewController {
     func runTimer() {
         timer = Timer.scheduledTimer(timeInterval: 1, target: self,   selector: (#selector(self.updateTimer)), userInfo: nil, repeats: true)
     }
+    
     func updateTimer() {
         if seconds < 1 {
             timer.invalidate()
-            items.remove(at: 0)
+            seconds = 0
             print(items.count)
             collectionView.reloadData()
+            print(seconds)
             performSegue(withIdentifier: "showSurvey", sender: self)
-        } else {
-            seconds -= 1
+        }
+//        else if seconds == -10 {
+//            print("end timer")
+//        }
+        else {
+            seconds -= 30
             timeLabel.text = ToStringHelper.timeString(time: TimeInterval(seconds))
         }
     }
     func getTime() -> Int {
-        let item: Item? = items[0]
-        if let item = item{
+        //if items.count > 0 {
+            let item = items[0]
             return Int(item.itemTime)
-        }
-        else{
-            //RUN ENDING SEQUENCE
-        }
+        //}
+//        else{
+//            //RUN ENDING SEQUENCE
+//            return -10
+//        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showSurvey" {
             let surveyViewController = segue.destination as! SurveyViewController
             surveyViewController.task = task!
+            surveyViewController.items = items
             surveyViewController.item = items[0]
         }
     }
@@ -86,6 +94,7 @@ extension TimerViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "itemCollectionViewCell", for: indexPath) as! ItemCollectionViewCell
         let row = indexPath.row
         cell.itemTitleLabel.text = items[row].itemTitle
+        print(items[row].itemDescription)
         cell.itemDescriptionTextView.text = items[row].itemDescription
         cell.itemTimeLabel.text = ToStringHelper.timeString(time: items[row].itemTime)
         return cell

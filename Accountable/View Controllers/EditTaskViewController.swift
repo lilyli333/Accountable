@@ -64,7 +64,7 @@ class EditTaskViewController: UIViewController {
                 task?.setValue(Date(), forKey: "modificationTime")
                 task?.setValue(taskNameTextField.text, forKey: "title")
                 print(number)
-                task?.setValue(number, forKey: "phoneNumber")
+                task?.setValue(phoneNumberTextField.text!, forKey: "phoneNumber")
                 
                 CoreDataHelper.saveToCoreData()
                 listViewController.listItemsTableView.reloadData()

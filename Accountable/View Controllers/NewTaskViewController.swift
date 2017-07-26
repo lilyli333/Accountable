@@ -11,6 +11,9 @@ import CoreData
 
 class NewTaskViewController: UIViewController {
     
+    @IBAction func onTapPressed(_ sender: Any) {
+        self.view.endEditing(true)
+    }
     @IBAction func addItemTapped(_ sender: UIButton) {
         performSegue(withIdentifier: "addNewItem", sender: self)
     }
@@ -35,7 +38,7 @@ class NewTaskViewController: UIViewController {
         task = NSManagedObject(entity: newtask!, insertInto: CoreDataHelper.managedContext) as! Task
         task?.setValue("", forKey: "title")
         task?.setValue(Date(), forKey: "modificationTime")
-        task?.setValue(0, forKey: "phoneNumber")
+        task?.setValue("0", forKey: "phoneNumber")
     }
     
     override func didReceiveMemoryWarning() {
@@ -77,10 +80,11 @@ class NewTaskViewController: UIViewController {
         
                 task?.setValue(Date(), forKey: "modificationTime")
                 task?.setValue(taskNameTextField.text ?? "---", forKey: "title")
-                task?.setValue(Int(phoneNumberTextField.text!), forKey: "phoneNumber")
-//                listViewController.tasks.append(task!)
+                task?.setValue(phoneNumberTextField.text!, forKey: "phoneNumber")
+                listViewController.tasks.append(task!)
                 print(task!)
                 CoreDataHelper.saveToCoreData()
+                print(task!)
                 listViewController.tasks = CoreDataHelper.retrieveTask()
                 
                 print(task!)
@@ -101,7 +105,7 @@ class NewTaskViewController: UIViewController {
 //            task?.phoneNumber = phoneNumberTextField.text! as! Int64
 //            task?.modificationTime = Date() as NSDate
             task?.setValue(taskNameTextField.text, forKey: "title")
-            task?.setValue(Int(phoneNumberTextField.text!) ?? 0000000000, forKey: "phoneNumber")
+            task?.setValue(Int(phoneNumberTextField.text!) ?? "0000000000", forKey: "phoneNumber")
             task?.setValue(Date(), forKey: "modificationTime")
             CoreDataHelper.saveToCoreData()
             newItemViewController.itemNum = items.count + 1

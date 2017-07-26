@@ -18,7 +18,7 @@ extension Task {
 
     @NSManaged public var modificationTime: NSDate
     @NSManaged public var title: String
-    @NSManaged public var phoneNumber: Int64
+    @NSManaged public var phoneNumber: String
     @NSManaged public var items: NSOrderedSet
 
 }
