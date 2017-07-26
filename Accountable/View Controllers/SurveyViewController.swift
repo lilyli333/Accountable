@@ -57,14 +57,18 @@ class SurveyViewController: UIViewController, MFMessageComposeViewControllerDele
     }
     
     @IBAction func yesButtonTapped(_ sender: Any) {
-        let str = "\(User.user) has successfully completed the task: \(item!.itemTitle). A picture of the product coming soon!"
+        let defaults = UserDefaults.standard
+        let name = defaults.string(forKey: "name")
+        let str = "\(name) has successfully completed the task: \(item!.itemTitle). A picture of the product coming soon!"
         sendText(text: str)
         print(str)
         didFinish = true
     }
     
     @IBAction func noButtonTapped(_ sender: Any) {
-        let str = "\(User.user) has NOT completed task: \(item!.itemTitle)."
+        let defaults = UserDefaults.standard
+        let name = defaults.string(forKey: "name")
+        let str = "\(name) has NOT completed task: \(item!.itemTitle)."
         sendText(text: str)
         print(str)
         didFinish = false

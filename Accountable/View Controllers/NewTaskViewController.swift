@@ -63,7 +63,7 @@ class NewTaskViewController: UIViewController {
             let number = phoneNumberTextField.text!
             
             if let number = Int(number) {
-                if number < 1000000000 {
+                if number.digitCount == 10 {
                     let alertController = UIAlertController(title: "invalid phone number", message:
                         "", preferredStyle: UIAlertControllerStyle.alert)
                     alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))

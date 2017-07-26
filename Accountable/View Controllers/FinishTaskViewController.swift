@@ -18,6 +18,7 @@ class FinishTaskViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         taskNameLabel.text = task?.title
+        continueButton.layer.cornerRadius = 6
         self.tabBarController?.tabBar.isHidden = true
     }
 

@@ -11,21 +11,15 @@ import CoreData
 import MessageUI
 
 class TaskViewController: UIViewController, MFMessageComposeViewControllerDelegate {
-    /*!
-     @method     messageComposeViewController:didFinishWithResult:
-     @abstract   Delegate callback which is called upon user's completion of message composition.
-     @discussion This delegate callback will be called when the user completes the message composition.
-     How the user chose to complete this task will be given as one of the parameters to the
-     callback.  Upon this call, the client should remove the view associated with the controller,
-     typically by dismissing modally.
-     @param      controller   The MFMessageComposeViewController instance which is returning the result.
-     @param      result       MessageComposeResult indicating how the user chose to complete the composition process.
-     */
+ 
     @available(iOS 4.0, *)
     func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
         
     }
 
+    @IBAction func editButtonTapped(_ sender: UIButton) {
+        performSegue(withIdentifier: "pinForEditTask", sender: self)
+    }
     
     @IBOutlet weak var taskNameLabel: UILabel!
     @IBOutlet weak var phoneNumberLabel: UILabel!
@@ -59,6 +53,11 @@ class TaskViewController: UIViewController, MFMessageComposeViewControllerDelega
         }
         else{
             performSegue(withIdentifier: "showWarning", sender: self)
+        }
+        
+        let defaults = UserDefaults.standard
+        if let name = defaults.string(forKey: "name"){
+            print(name)
         }
     }
     
