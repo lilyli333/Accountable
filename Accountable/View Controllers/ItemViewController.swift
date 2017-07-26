@@ -25,6 +25,9 @@ class ItemViewController : UIViewController {
         super.viewDidLoad()
     }
     
+    @IBAction func backgroundTapped(_ sender: Any) {
+        self.view.endEditing(true)
+    }
     //tap gesture recognize
     //dismiss keyboard func
     

@@ -17,6 +17,8 @@ class TimerViewController: UIViewController {
     var timer = Timer()
     let group = DispatchGroup()
     
+    var canTxt = true
+    
     
     @IBOutlet weak var timeLabel: UILabel!
     
@@ -26,6 +28,7 @@ class TimerViewController: UIViewController {
     @IBOutlet weak var itemsPageControl: UIPageControl!
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tabBarController?.tabBar.isHidden = true
         taskNameLabel.text = task?.title
         seconds = getTime()
         runTimer()
@@ -46,25 +49,29 @@ class TimerViewController: UIViewController {
             print(items.count)
             collectionView.reloadData()
             print(seconds)
-            performSegue(withIdentifier: "showSurvey", sender: self)
+            if canTxt == true{
+                performSegue(withIdentifier: "showSurvey", sender: self)
+            }
+            else{
+                if items.count > 1{
+                items.remove(at: 0)
+                collectionView.reloadData()
+                seconds = getTime()
+                runTimer()
+                }
+                else{
+                    performSegue(withIdentifier: "timerToCongrats", sender: self)
+                }
+            }
         }
-//        else if seconds == -10 {
-//            print("end timer")
-//        }
         else {
-            seconds -= 30
+            seconds -= 10
             timeLabel.text = ToStringHelper.timeString(time: TimeInterval(seconds))
         }
     }
     func getTime() -> Int {
-        //if items.count > 0 {
-            let item = items[0]
-            return Int(item.itemTime)
-        //}
-//        else{
-//            //RUN ENDING SEQUENCE
-//            return -10
-//        }
+        let item = items[0]
+        return Int(item.itemTime)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -73,6 +80,10 @@ class TimerViewController: UIViewController {
             surveyViewController.task = task!
             surveyViewController.items = items
             surveyViewController.item = items[0]
+        }
+        else if segue.identifier == "timerToCongrats" {
+            let congratsViewController = segue.destination as! FinishTaskViewController
+            congratsViewController.task = task!
         }
     }
 }

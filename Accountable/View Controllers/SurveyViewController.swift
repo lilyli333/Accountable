@@ -18,6 +18,7 @@ class SurveyViewController: UIViewController, MFMessageComposeViewControllerDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tabBarController?.tabBar.isHidden = true
     }
     
     override func didReceiveMemoryWarning() {

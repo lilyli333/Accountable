@@ -8,8 +8,24 @@
 
 import UIKit
 import CoreData
+import MessageUI
 
-class TaskViewController: UIViewController {
+class TaskViewController: UIViewController, MFMessageComposeViewControllerDelegate {
+    /*!
+     @method     messageComposeViewController:didFinishWithResult:
+     @abstract   Delegate callback which is called upon user's completion of message composition.
+     @discussion This delegate callback will be called when the user completes the message composition.
+     How the user chose to complete this task will be given as one of the parameters to the
+     callback.  Upon this call, the client should remove the view associated with the controller,
+     typically by dismissing modally.
+     @param      controller   The MFMessageComposeViewController instance which is returning the result.
+     @param      result       MessageComposeResult indicating how the user chose to complete the composition process.
+     */
+    @available(iOS 4.0, *)
+    func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
+        
+    }
+
     
     @IBOutlet weak var taskNameLabel: UILabel!
     @IBOutlet weak var phoneNumberLabel: UILabel!
@@ -38,7 +54,12 @@ class TaskViewController: UIViewController {
     }
     
     @IBAction func startTaskButtonTapped(_ sender: UIButton) {
-        performSegue(withIdentifier: "startTask", sender: self)
+        if (MFMessageComposeViewController.canSendText()){
+            performSegue(withIdentifier: "startTask", sender: self)
+        }
+        else{
+            performSegue(withIdentifier: "showWarning", sender: self)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -50,6 +71,11 @@ class TaskViewController: UIViewController {
         else if segue.identifier == "editTask" {
             let editTaskViewController = segue.destination as! EditTaskViewController
             editTaskViewController.task = task!
+        }
+        else if segue.identifier == "showWarning" {
+            let warningViewController = segue.destination as! WarningViewController
+            warningViewController.task = task!
+            warningViewController.items = items
         }
     }
     

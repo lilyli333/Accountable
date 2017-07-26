@@ -24,6 +24,7 @@ class CameraViewController: UIViewController, MFMessageComposeViewControllerDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tabBarController?.tabBar.isHidden = true
         takePhotoButton.layer.cornerRadius = 10
         
         let captureDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
@@ -82,6 +83,10 @@ class CameraViewController: UIViewController, MFMessageComposeViewControllerDele
                 print(error)
             }
             
+        }
+        else if segue.identifier == "finishedTask" {
+            let congratsViewConroller = segue.destination as! FinishTaskViewController
+            congratsViewConroller.task = task!
         }
     }
     

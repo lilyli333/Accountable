@@ -11,6 +11,10 @@ import CoreData
 
 class NewItemViewController : UIViewController {
     
+    
+    @IBAction func backgroundTapped(_ sender: Any) {
+        self.view.endEditing(true)
+    }
     @IBOutlet weak var itemTitleTextField: UITextField!
     
     @IBOutlet weak var itemDescriptionTextView: UITextView!

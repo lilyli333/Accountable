@@ -10,9 +10,15 @@ import UIKit
 
 class FinishTaskViewController: UIViewController {
 
+    @IBOutlet weak var taskNameLabel: UILabel!
+    var task: Task?
+    
     @IBOutlet weak var continueButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        taskNameLabel.text = task?.title
+        self.tabBarController?.tabBar.isHidden = true
     }
 
     override func didReceiveMemoryWarning() {

@@ -19,6 +19,9 @@ class EditTaskViewController: UIViewController {
     var task: Task?
     var items = [Item]()
     
+    @IBAction func backgroundTapped(_ sender: Any) {
+        self.view.endEditing(true)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
     }
