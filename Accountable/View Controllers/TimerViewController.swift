@@ -26,6 +26,13 @@ class TimerViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
     @IBOutlet weak var itemsPageControl: UIPageControl!
+    
+    
+    @IBAction func cancelButtonTapped(_ sender: UIButton) {
+        performSegue(withIdentifier: "pinToCancel", sender: self)
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tabBarController?.tabBar.isHidden = true
@@ -84,6 +91,10 @@ class TimerViewController: UIViewController {
         else if segue.identifier == "timerToCongrats" {
             let congratsViewController = segue.destination as! FinishTaskViewController
             congratsViewController.task = task!
+        }
+        else if segue.identifier == "pinToCancel" {
+            let inputPinViewController = segue.destination as! InputPinViewController
+            inputPinViewController.fromSB = .timer
         }
     }
 }

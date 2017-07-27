@@ -19,6 +19,8 @@ class PinViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         doneButton.layer.cornerRadius = 6
+        
+        pinTextField.becomeFirstResponder()
     }
 
     override func didReceiveMemoryWarning() {
@@ -28,7 +30,13 @@ class PinViewController: UIViewController {
         let num = Int(pinTextField.text!)
         if num?.digitCount == 4{
             
-            User.setPin(num!)
+            User.setPin(pin: num!)
+            
+            let defaults = UserDefaults.standard
+            if let pin = defaults.string(forKey: "pin") {
+                print(pin)
+            }
+            
             
             let initialViewController = UIStoryboard.initialViewController(for: .main)
             self.view.window?.rootViewController = initialViewController
@@ -46,24 +54,25 @@ class PinViewController: UIViewController {
         let arr = Array(pinTextField.text!.characters)
         
         if arr.count >= 1 {
-            firstLabel.text = String(arr[0])
+            firstLabel.text = "⚪"
+
         } else {
             firstLabel.text = "-"
         }
         
         if arr.count >= 2 {
-            secondLabel.text = String(arr[1])
+            secondLabel.text = "⚪"
         } else {
             secondLabel.text = "-"
         }
         
         if arr.count >= 3 {
-            thirdLabel.text = String(arr[2])
+            thirdLabel.text = "⚪"
         } else {
             thirdLabel.text = "-"        }
         
         if arr.count >= 4 {
-            fourthLabel.text = String(arr[3])
+            fourthLabel.text = "⚪"
         } else {
             fourthLabel.text = "-"
         }

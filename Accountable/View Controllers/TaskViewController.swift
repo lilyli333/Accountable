@@ -61,15 +61,21 @@ class TaskViewController: UIViewController, MFMessageComposeViewControllerDelega
         }
     }
     
+    @IBAction func backButtonTapped(_ sender: Any) {
+        navigationController?.popToRootViewController(animated: true)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "startTask" {
             let timerViewController = segue.destination as! TimerViewController
             timerViewController.task = task
             timerViewController.items = items
         }
-        else if segue.identifier == "editTask" {
-            let editTaskViewController = segue.destination as! EditTaskViewController
-            editTaskViewController.task = task!
+        else if segue.identifier == "pinForEditTask" {
+            let inputPinViewController = segue.destination as! InputPinViewController
+            inputPinViewController.fromSB = .task
+            inputPinViewController.task = task!
+            inputPinViewController.items = items
         }
         else if segue.identifier == "showWarning" {
             let warningViewController = segue.destination as! WarningViewController

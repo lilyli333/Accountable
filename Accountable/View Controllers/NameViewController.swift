@@ -29,7 +29,12 @@ class NameViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "setPin" {
             if nameTextField.text != ""{
-                    User.setName(nameTextField.text!)
+                print(nameTextField.text)
+                let defaults = UserDefaults.standard
+                User.setName(name: nameTextField.text!)
+                if let name = defaults.string(forKey: "name"){
+                    print(name)
+                }
             }
             else {
                 let alertController = UIAlertController(title: "please enter a name", message:

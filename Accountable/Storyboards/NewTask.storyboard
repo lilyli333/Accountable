@@ -30,7 +30,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WSe-9r-elh">
-                                <rect key="frame" x="0.0" y="325" width="375" height="238"/>
+                                <rect key="frame" x="0.0" y="325" width="375" height="243"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="itemCell" rowHeight="100" id="Iik-CG-juA" customClass="ItemTableViewCell" customModule="Accountable" customModuleProvider="target">
@@ -215,23 +215,17 @@
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="td9-Gs-VnK">
                                 <rect key="frame" x="0.0" y="568" width="375" height="50"/>
+                                <color key="backgroundColor" red="1" green="0.59999999999999998" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="09w-fM-EGa"/>
                                 </constraints>
                                 <state key="normal" title="save task">
-                                    <color key="titleColor" red="1" green="0.57152793729999996" blue="0.4287039165" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="UsU-Lj-E2Z" kind="show" identifier="saveNewTask" id="3ER-P0-Cew"/>
+                                    <action selector="saveTaskButtonTapped:" destination="4kE-50-M9L" eventType="touchUpInside" id="s6R-r5-KZG"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f76-Fr-Ymy">
-                                <rect key="frame" x="0.0" y="563" width="375" height="5"/>
-                                <color key="backgroundColor" red="1" green="0.57152793729999996" blue="0.4287039165" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="5" id="FO3-2V-8U4"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
@@ -239,16 +233,12 @@
                             <constraint firstItem="oqc-f6-ORD" firstAttribute="top" secondItem="KGC-Gq-PI2" secondAttribute="bottom" id="20a-o8-dmg"/>
                             <constraint firstItem="7nk-0J-j1E" firstAttribute="leading" secondItem="d0R-HD-Ha0" secondAttribute="leading" id="6oK-Zo-JsV"/>
                             <constraint firstItem="7nk-0J-j1E" firstAttribute="top" secondItem="kuT-5D-30l" secondAttribute="bottom" id="6r1-8b-uW9"/>
-                            <constraint firstItem="f76-Fr-Ymy" firstAttribute="top" secondItem="WSe-9r-elh" secondAttribute="bottom" id="9vt-LL-HXX"/>
                             <constraint firstAttribute="trailing" secondItem="oqc-f6-ORD" secondAttribute="trailing" id="BEZ-Nt-eOJ"/>
                             <constraint firstAttribute="trailing" secondItem="7nk-0J-j1E" secondAttribute="trailing" id="Bkp-FL-Ng3"/>
-                            <constraint firstItem="td9-Gs-VnK" firstAttribute="top" secondItem="f76-Fr-Ymy" secondAttribute="bottom" id="Din-rS-X2b"/>
                             <constraint firstAttribute="trailing" secondItem="KGC-Gq-PI2" secondAttribute="trailing" id="EhR-bi-Cjb"/>
                             <constraint firstItem="KGC-Gq-PI2" firstAttribute="leading" secondItem="d0R-HD-Ha0" secondAttribute="leading" id="Gxi-cj-YJj"/>
                             <constraint firstItem="KGC-Gq-PI2" firstAttribute="top" secondItem="8oD-78-mx2" secondAttribute="bottom" id="HAY-xu-3Bh"/>
                             <constraint firstItem="kuT-5D-30l" firstAttribute="leading" secondItem="d0R-HD-Ha0" secondAttribute="leading" id="O5t-oH-eI1"/>
-                            <constraint firstAttribute="trailing" secondItem="f76-Fr-Ymy" secondAttribute="trailing" id="aTs-tr-dSW"/>
-                            <constraint firstItem="f76-Fr-Ymy" firstAttribute="leading" secondItem="d0R-HD-Ha0" secondAttribute="leading" id="bhC-CC-tnQ"/>
                             <constraint firstItem="oqc-f6-ORD" firstAttribute="leading" secondItem="d0R-HD-Ha0" secondAttribute="leading" id="cQy-Pk-D0w"/>
                             <constraint firstItem="td9-Gs-VnK" firstAttribute="leading" secondItem="d0R-HD-Ha0" secondAttribute="leading" id="gUc-rz-frE"/>
                             <constraint firstItem="WSe-9r-elh" firstAttribute="leading" secondItem="d0R-HD-Ha0" secondAttribute="leading" id="hI7-EU-Scf"/>
@@ -258,6 +248,7 @@
                             <constraint firstAttribute="trailing" secondItem="WSe-9r-elh" secondAttribute="trailing" id="qWR-pS-x78"/>
                             <constraint firstItem="kuT-5D-30l" firstAttribute="top" secondItem="oqc-f6-ORD" secondAttribute="bottom" id="rOa-OR-y8O"/>
                             <constraint firstItem="ksl-tx-evx" firstAttribute="top" secondItem="td9-Gs-VnK" secondAttribute="bottom" id="vqr-D2-6pY"/>
+                            <constraint firstItem="td9-Gs-VnK" firstAttribute="top" secondItem="WSe-9r-elh" secondAttribute="bottom" id="z4W-gS-HFK"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="DGZ-ev-n0U" appends="YES" id="cIJ-lY-aiT"/>
@@ -270,6 +261,7 @@
                         <outlet property="phoneNumberTextField" destination="BIp-Ra-78h" id="srG-OO-Ul6"/>
                         <outlet property="taskNameTextField" destination="zdE-Wc-MZi" id="1gC-U0-Kgc"/>
                         <segue destination="VwV-cB-P3c" kind="show" identifier="addNewItem" id="9av-d6-JX3"/>
+                        <segue destination="k1f-f3-aX4" kind="show" identifier="newTaskToPin" id="Hd3-ws-mcX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EpT-3Q-Iuy" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -421,6 +413,14 @@
                 </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="5335" y="994"/>
+        </scene>
+        <!--inputPinViewController-->
+        <scene sceneID="nJS-yp-Mjo">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Tasks" referencedIdentifier="inputPinViewController" id="k1f-f3-aX4" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="K0f-Yb-tlI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4912" y="1445"/>
         </scene>
         <!--new-->
         <scene sceneID="Y2k-8L-Fl7">

@@ -22,6 +22,9 @@ class NewTaskViewController: UIViewController {
     }
     
     
+    @IBAction func saveTaskButtonTapped(_ sender: Any) {
+        performSegue(withIdentifier: "newTaskToPin", sender: self)
+    }
     @IBOutlet weak var taskNameTextField: UITextField!
     
     @IBOutlet weak var phoneNumberTextField: UITextField!
@@ -58,45 +61,13 @@ class NewTaskViewController: UIViewController {
             let item = items[indexPath.row]
             itemViewController.item = item
         }
-        else if segue.identifier == "saveNewTask" {
-            let listViewController = segue.destination as! ListViewController
-            let number = phoneNumberTextField.text!
-            
-            if let number = Int(number) {
-                if number.digitCount == 10 {
-                    let alertController = UIAlertController(title: "invalid phone number", message:
-                        "", preferredStyle: UIAlertControllerStyle.alert)
-                    alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
-                    self.present(alertController, animated: true, completion: nil)
-                    return
-                }
-                else if taskNameTextField.text!.isEmpty{
-                    let alertController = UIAlertController(title: "cannot save task", message:
-                        "required field cannot be empty", preferredStyle: UIAlertControllerStyle.alert)
-                    alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
-                    self.present(alertController, animated: true, completion: nil)
-                    return
-                }
-        
-                task?.setValue(Date(), forKey: "modificationTime")
-                task?.setValue(taskNameTextField.text ?? "---", forKey: "title")
-                task?.setValue(phoneNumberTextField.text!, forKey: "phoneNumber")
-                listViewController.tasks.append(task!)
-                print(task!)
-                CoreDataHelper.saveToCoreData()
-                print(task!)
-                listViewController.tasks = CoreDataHelper.retrieveTask()
-                
-                print(task!)
-                
-            }
-            else{
-                let alertController = UIAlertController(title: "cannot save task", message:
-                    "", preferredStyle: UIAlertControllerStyle.alert)
-                alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
-                self.present(alertController, animated: true, completion: nil)
-                return
-            }
+        else if segue.identifier == "newTaskToPin" {
+            let inputPinViewController = segue.destination as! InputPinViewController
+            inputPinViewController.fromSB = .saveNewTask
+            inputPinViewController.task = task!
+            inputPinViewController.items = items
+            inputPinViewController.taskName = taskNameTextField.text!
+            inputPinViewController.phoneNumber = phoneNumberTextField.text!
         }
         else if segue.identifier == "addNewItem" {
             print(taskNameTextField.text!)
