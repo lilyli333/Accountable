@@ -19,19 +19,15 @@ class TimerViewController: UIViewController {
     
     var canTxt = true
     
-    
+    @IBAction func cancelButtonTapped(_ sender: Any) {
+        performSegue(withIdentifier: "pinToCancel", sender: self)
+    }
     @IBOutlet weak var timeLabel: UILabel!
     
     @IBOutlet weak var taskNameLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     
     @IBOutlet weak var itemsPageControl: UIPageControl!
-    
-    
-    @IBAction func cancelButtonTapped(_ sender: UIButton) {
-        performSegue(withIdentifier: "pinToCancel", sender: self)
-    }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -97,13 +93,19 @@ class TimerViewController: UIViewController {
             inputPinViewController.fromSB = .timer
         }
     }
+    @IBAction func unwindSegueToTimer(for segue: UIStoryboardSegue, sender: Any) {
+    }
+
 }
 
-extension TimerViewController: UICollectionViewDelegate {
+extension TimerViewController: UICollectionViewDelegateFlowLayout {
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        let cellWidth = UIScreen.main.bounds.size.width
+//        return CGSize(width: cellWidth, height: 300)
+//    }
 }
 
 extension TimerViewController: UICollectionViewDataSource {
-    
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         itemsPageControl.currentPage = (collectionView.indexPathsForVisibleItems.first?.row)!
     }

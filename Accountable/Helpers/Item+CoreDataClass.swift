@@ -11,5 +11,8 @@ import CoreData
 
 
 public class Item: NSManagedObject {
-
+    var itemObjTitle: String?
+    var itemObjDesc: String?
+    var itemObjTime: Double?
+    var itemObjOrder: Int16?
 }

@@ -13,6 +13,7 @@ class ListViewController: UIViewController {
     
     @IBOutlet weak var tasksListTableView: UITableView!
     
+    @IBOutlet weak var listNumLabel: UILabel!
     var tasks = [Task](){
         didSet {
             //tasks = CoreDataHelper.retrieveTask()
@@ -23,8 +24,16 @@ class ListViewController: UIViewController {
     override func viewDidLoad() {
         print("the list of tasks has been reloaded")
         super.viewDidLoad()
+        self.tabBarController?.delegate = self
         tasksListTableView.reloadData()
         tasks = CoreDataHelper.retrieveTask()
+        listNumLabel.text! = "(tasks.count) available lists"
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        tasks = CoreDataHelper.retrieveTask()
+        tasksListTableView.reloadData()
+        listNumLabel.text! = "\(tasks.count) available lists"
     }
 
     override func didReceiveMemoryWarning() {
@@ -43,7 +52,7 @@ class ListViewController: UIViewController {
             }
         }
     }
-    @IBAction func prepareForUnwind(segue: UIStoryboardSegue) {
+    @IBAction func prepareForUnwindToList(segue: UIStoryboardSegue) {
     }
 
 
@@ -87,6 +96,16 @@ extension ListViewController: UITableViewDataSource {
 extension ListViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return ListTasksTableViewCell.height
+    }
+}
+extension ListViewController: UITabBarControllerDelegate {
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        if viewController is NewTaskViewController{
+            let newTaskVC = UIStoryboard(name: "NewTask", bundle: nil).instantiateViewController(withIdentifier: "newTaskVC")
+            self.present(newTaskVC, animated: true, completion: nil)
+            return false
+        }
+        return true
     }
 }
 

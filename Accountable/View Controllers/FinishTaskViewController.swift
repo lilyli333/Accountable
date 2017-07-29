@@ -27,6 +27,6 @@ class FinishTaskViewController: UIViewController {
     }
     
     @IBAction func continueButtonTapped(_ sender: Any) {
-        navigationController?.popToRootViewController(animated: true)
+        self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
     }
 }

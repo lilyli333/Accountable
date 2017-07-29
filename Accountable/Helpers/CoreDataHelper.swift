@@ -25,13 +25,13 @@ class CoreDataHelper {
     //    }
     
     //
-        static func saveToCoreData() {
-            do {
-                try managedContext.save()
-            } catch let error as NSError {
-                print("Could not save \(error)")
-            }
+    static func saveToCoreData() {
+        do {
+            try managedContext.save()
+        } catch let error as NSError {
+            print("Could not save \(error)")
         }
+    }
     //
     //    static func saveItem() {
     //        do {
@@ -51,6 +51,11 @@ class CoreDataHelper {
     static func deleteTask(task: Task) {
         managedContext.delete(task)
     }
+    static func deleteItems(items: [Item]) {
+        for item in items{
+            managedContext.delete(item)
+        }
+    }
     //
     static func retrieveTask() -> [Task] {
         let fetchRequest = NSFetchRequest<Task>(entityName: "Task")
@@ -66,7 +71,6 @@ class CoreDataHelper {
     
     static public func getItemsArray(task: Task)-> [Item] {
         let allItems = task.items.sortedArray(using: [NSSortDescriptor(key: "order", ascending: true, selector: #selector(NSNumber.compare(_:)))]) as! [Item]
-        print(allItems)
         return allItems
     }
     

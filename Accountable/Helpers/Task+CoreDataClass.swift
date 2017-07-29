@@ -11,5 +11,7 @@ import CoreData
 
 
 public class Task: NSManagedObject {
-
+    var taskObjTime: NSDate?
+    var taskObjTitle: String?
+    var taskObjPhoneNumber: String?
 }

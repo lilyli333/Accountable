@@ -19,6 +19,13 @@ class EditTaskViewController: UIViewController {
     var task: Task?
     var items = [Item]()
     
+    @IBAction func cancelButtonTapped(_ sender: Any) {
+        let vc = presentingViewController!
+        let pinVC = vc.presentingViewController!
+        pinVC.dismiss(animated: false) {
+            vc.dismiss(animated: true, completion: nil)
+        }
+    }
     @IBAction func backgroundTapped(_ sender: Any) {
         self.view.endEditing(true)
     }
@@ -30,43 +37,57 @@ class EditTaskViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
+    
     @IBAction func saveButtonTapped(_ sender: UIButton) {
-        performSegue(withIdentifier: "pinToSaveTask", sender: self)
+                
+        task?.setValue(phoneNumberTextField.text!, forKey: "phoneNumber")
+        task?.setValue(taskNameTextField.text!, forKey: "title")
+        task?.setValue(Date(), forKey: "modificationTime")
+
+        CoreDataHelper.saveToCoreData()
+            
+        let vc = presentingViewController!
+        let pinVC = vc.presentingViewController!
+        pinVC.dismiss(animated: false) {
+            vc.dismiss(animated: true, completion: nil)
+        }
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         items = CoreDataHelper.getItemsArray(task: task!)
         phoneNumberTextField.text = ("\(task!.phoneNumber)")
         taskNameTextField.text = task!.title
-        }
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showItem" {
+        if segue.identifier == "showNewItem" {
             let itemViewController = segue.destination as! ItemViewController
             let indexPath = itemsListTableViwe.indexPathForSelectedRow!
             let item = items[indexPath.row]
             itemViewController.item = item
+            itemViewController.itemnum = indexPath.row + 1
         }
-        else if segue.identifier == "pinToSaveTask" {
-            let inputPinViewController = segue.destination as! InputPinViewController
-            inputPinViewController.fromSB = .saveTask
-            inputPinViewController.task = task!
-            inputPinViewController.items = items
-            inputPinViewController.taskName = taskNameTextField.text!
-            inputPinViewController.phoneNumber = phoneNumberTextField.text!
-            
-        }
+            //        else if segue.identifier == "pinToSaveTask" {
+            //            let inputPinViewController = segue.destination as! InputPinViewController
+            //            inputPinViewController.fromSB = .saveTask
+            //            inputPinViewController.task = task!
+            //            inputPinViewController.items = items
+            //            inputPinViewController.taskName = taskNameTextField.text!
+            //            inputPinViewController.phoneNumber = phoneNumberTextField.text!
+            //            self.dismiss(animated: false, completion: nil)
+            //        }
         else if segue.identifier == "addNewItem" {
-            task?.setValue(taskNameTextField.text, forKey: "title")
-            task?.setValue(Int(phoneNumberTextField.text!), forKey: "phoneNumber")
-            
+            let itemViewController = segue.destination as! ItemViewController
+            task?.setValue(phoneNumberTextField.text!, forKey: "phoneNumber")
+            task?.setValue(taskNameTextField.text!, forKey: "title")
+            itemViewController.itemnum = items.count + 1
         }
     }
     
     @IBAction func prepareForUnwind(segue: UIStoryboardSegue) {
         
     }
-    
 }
 
 extension EditTaskViewController: UITableViewDataSource {

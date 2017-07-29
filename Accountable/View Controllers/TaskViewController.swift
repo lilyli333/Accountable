@@ -18,7 +18,7 @@ class TaskViewController: UIViewController, MFMessageComposeViewControllerDelega
     }
 
     @IBAction func editButtonTapped(_ sender: UIButton) {
-        performSegue(withIdentifier: "pinForEditTask", sender: self)
+        performSegue(withIdentifier: "taskToPin", sender: self)
     }
     
     @IBOutlet weak var taskNameLabel: UILabel!
@@ -42,9 +42,11 @@ class TaskViewController: UIViewController, MFMessageComposeViewControllerDelega
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         items = CoreDataHelper.getItemsArray(task: task!)
+        print(items)
         phoneNumberLabel.text = ("\(task!.phoneNumber)")
         taskNameLabel.text = task!.title
         numberItemsLabel.text = "items (\(items.count))"
+        self.listItemsTableView.reloadData()
     }
     
     @IBAction func startTaskButtonTapped(_ sender: UIButton) {
@@ -62,7 +64,7 @@ class TaskViewController: UIViewController, MFMessageComposeViewControllerDelega
     }
     
     @IBAction func backButtonTapped(_ sender: Any) {
-        navigationController?.popToRootViewController(animated: true)
+        self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -71,7 +73,7 @@ class TaskViewController: UIViewController, MFMessageComposeViewControllerDelega
             timerViewController.task = task
             timerViewController.items = items
         }
-        else if segue.identifier == "pinForEditTask" {
+        else if segue.identifier == "taskToPin" {
             let inputPinViewController = segue.destination as! InputPinViewController
             inputPinViewController.fromSB = .task
             inputPinViewController.task = task!
@@ -84,7 +86,7 @@ class TaskViewController: UIViewController, MFMessageComposeViewControllerDelega
         }
     }
     
-    @IBAction func prepareForUnwind(segue: UIStoryboardSegue) {
+    @IBAction func prepareForUnwindToTask(segue: UIStoryboardSegue) {
         
     }
     

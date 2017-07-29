@@ -12,6 +12,7 @@ import CoreData
 class ItemViewController : UIViewController {
     @IBOutlet weak var itemTitleTextField: UITextField!
     
+    @IBOutlet weak var itemNumLabel: UILabel!
     @IBOutlet weak var itemDescriptionTextView: UITextView!
     
     @IBOutlet weak var itemTimePicker: UIDatePicker!
@@ -20,6 +21,8 @@ class ItemViewController : UIViewController {
     var itemTitle: String?
     
     var item: Item?
+    
+    var itemnum = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,6 +56,7 @@ class ItemViewController : UIViewController {
             itemDescriptionTextView.text = ""
             itemTimePicker.countDownDuration = 60
         }
+     itemNumLabel.text! = "item #\(itemnum)"
     }
     @IBAction func itemTimePickerAction(_ sender: Any) {
         itemTimePicker.datePickerMode = UIDatePickerMode.countDownTimer
@@ -62,41 +66,37 @@ class ItemViewController : UIViewController {
         let taskViewController = segue.destination as! EditTaskViewController
         if segue.identifier == "saveItem" {
             if let item = item{
-                item.setValue(itemTitleTextField.text ?? "---", forKey: "itemTitle")
-                item.setValue(itemDescriptionTextView.text ?? "", forKey: "itemDescription")
+                
+                item.setValue(itemTitleTextField.text!, forKey: "itemTitle")
                 item.setValue(itemTimePicker.countDownDuration, forKey: "itemTime")
-                do{
-                    try CoreDataHelper.managedContext.save()
-                }
-                catch{
-                    print("error saving with add button press. \(error)")
-                }
+                item.setValue(itemDescriptionTextView.text!, forKey: "itemDescription")
+                taskViewController.items = CoreDataHelper.getItemsArray(task: taskViewController.task!)
+   
                 taskViewController.itemsListTableViwe.reloadData()
-
             }
             else{
+                
                 let item = NSEntityDescription.entity(forEntityName: "Item", in: CoreDataHelper.managedContext)
                 let newItem = NSManagedObject(entity: item!, insertInto: CoreDataHelper.managedContext) as! Item
-                newItem.setValue(itemTitleTextField.text ?? "---", forKey: "itemTitle")
-                newItem.setValue(itemDescriptionTextView.text ?? "", forKey: "itemDescription")
+                newItem.setValue(itemTitleTextField.text!, forKey: "itemTitle")
                 newItem.setValue(itemTimePicker.countDownDuration, forKey: "itemTime")
+                newItem.setValue(itemDescriptionTextView.text!, forKey: "itemDescription")
                 newItem.setValue(taskViewController.items.count, forKey: "order")
-                newItem.task = taskViewController.task
+                newItem.task = taskViewController.task!
+                taskViewController.items = CoreDataHelper.getItemsArray(task: taskViewController.task!)
+                
+                taskViewController.itemsListTableViwe.reloadData()
 
-                do{
-                    try CoreDataHelper.managedContext.save()
-                }
-                catch{
-                    print("error saving with add button press. \(error)")
-                    taskViewController.items.append(newItem)
-                }
-                print(taskViewController.task)
+                
+                taskViewController.items.append(newItem)
+                print(taskViewController.items)
                 print("...")
                 print(newItem)
                 taskViewController.itemsListTableViwe.reloadData()
             }
         }
         else if segue.identifier == "cancelItem" {
+            
         }
     }
 }

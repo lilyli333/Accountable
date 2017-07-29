@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class InputPinViewController: UIViewController {
     
@@ -17,6 +18,9 @@ class InputPinViewController: UIViewController {
     @IBOutlet weak var warningLabel: UILabel!
     @IBOutlet weak var pinInputTextField: UITextField!
     
+    @IBAction func cancelButtonPressed(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
     var fromSB: segues?
     var task: Task?
     var items = [Item]()
@@ -28,6 +32,7 @@ class InputPinViewController: UIViewController {
         case timer
         case saveTask
         case saveNewTask
+        case editSettings
     }
     
     override func viewDidLoad() {
@@ -43,7 +48,9 @@ class InputPinViewController: UIViewController {
         
         if arr.count < 4{
             warningLabel.text = ""
-            warningLabel.backgroundColor = UIColor(hexString: "#FF9966")
+            warningLabel.backgroundColor = ColorConversion.hexStringToUIColor(hex: "FF9966")
+            warningLabel.layer.cornerRadius = 6
+            
         }
         if arr.count == 4 {
             let number = Int(pinInputTextField.text!)
@@ -55,13 +62,18 @@ class InputPinViewController: UIViewController {
                     performSegue(withIdentifier: "pinToEditTask", sender: self)
                 }
                 else if fromSB == .timer {
-                    navigationController?.popToRootViewController(animated: true)
+                    self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
                 }
                 else if fromSB == .saveTask {
                     performSegue(withIdentifier: "pinToSaveTask", sender: self)
                 }
                 else if fromSB == .saveNewTask {
-                    performSegue(withIdentifier: "pinToTaskList", sender: self)
+                    //self.dismiss(animated: true, completion: {
+                        performSegue(withIdentifier: "pinToTaskList", sender: self)
+                    //})
+                }
+                else if fromSB == .editSettings {
+                    performSegue(withIdentifier: "pinToChangePin", sender: self)
                 }
                 
             }
@@ -73,9 +85,11 @@ class InputPinViewController: UIViewController {
                 fourthLabel.text = "-"
                 self.reloadInputViews()
                 warningLabel.text = "inccorect pin, please try again"
-                warningLabel.backgroundColor = UIColor(hexString: "#FFFFE0")
-            }
+                warningLabel.backgroundColor = ColorConversion.hexStringToUIColor(hex: "FF9966")
+                warningLabel.layer.cornerRadius = 6
 
+            }
+            
         }
         
         if arr.count >= 1 {
@@ -105,11 +119,15 @@ class InputPinViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "pinToEditTask" {
+            
             let editTaskViewController = segue.destination as! EditTaskViewController
-            editTaskViewController.task = task!
-            editTaskViewController.items = items
+            editTaskViewController.task = self.task!
+            editTaskViewController.items = self.items
         }
         else if segue.identifier == "pinToSaveTask" {
+            
+            let newtask = NSEntityDescription.entity(forEntityName: "Task", in: CoreDataHelper.managedContext)
+            task = NSManagedObject(entity: newtask!, insertInto: CoreDataHelper.managedContext) as! Task
             let listViewController = segue.destination as! TaskViewController
             let number = phoneNumber!
             
@@ -152,43 +170,28 @@ class InputPinViewController: UIViewController {
             let listViewController = segue.destination as! ListViewController
             let number = phoneNumber!
             
-            if let number = Int(number) {
-                if number.digitCount != 10 {
-                    let alertController = UIAlertController(title: "invalid phone number", message:
-                        "", preferredStyle: UIAlertControllerStyle.alert)
-                    alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
-                    self.present(alertController, animated: true, completion: nil)
-                    return
-                }
-                else if taskName!.isEmpty{
-                    let alertController = UIAlertController(title: "cannot save task", message:
-                        "required field cannot be empty", preferredStyle: UIAlertControllerStyle.alert)
-                    alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
-                    self.present(alertController, animated: true, completion: nil)
-                    return
-                }
-                
-                task?.setValue(Date(), forKey: "modificationTime")
-                task?.setValue(taskName! ?? "---", forKey: "title")
-                task?.setValue(phoneNumber!, forKey: "phoneNumber")
-                listViewController.tasks.append(task!)
-                print(task!)
+            let taskk = NSEntityDescription.entity(forEntityName: "Task", in: CoreDataHelper.managedContext)
+            let newtask = NSManagedObject(entity: taskk!, insertInto: CoreDataHelper.managedContext) as! Task
+            
+            newtask.setValue(Date(), forKey: "modificationTime")
+            newtask.setValue(taskName! ?? "---", forKey: "title")
+            newtask.setValue(phoneNumber!, forKey: "phoneNumber")
+            
+            for i in items {
+                let item = NSEntityDescription.entity(forEntityName: "Item", in: CoreDataHelper.managedContext)
+                let newItem = NSManagedObject(entity: item!, insertInto: CoreDataHelper.managedContext) as! Item
+                newItem.setValue(i.itemObjTitle, forKey: "itemTitle")
+                newItem.setValue(i.itemObjDesc, forKey: "itemDescription")
+                newItem.setValue(i.itemObjTime, forKey: "itemTime")
+                newItem.setValue(i.itemObjOrder, forKey: "order")
+                newItem.task = newtask
                 CoreDataHelper.saveToCoreData()
-                print(task!)
-                listViewController.tasks = CoreDataHelper.retrieveTask()
-                
-                print(task!)
-                
             }
-            else{
-                let alertController = UIAlertController(title: "cannot save task", message:
-                    "", preferredStyle: UIAlertControllerStyle.alert)
-                alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
-                self.present(alertController, animated: true, completion: nil)
-                return
-            }
-
+            
+            listViewController.tasks.append(newtask)
+            CoreDataHelper.saveToCoreData()
+            listViewController.tasks = CoreDataHelper.retrieveTask()
+            self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
         }
     }
-        
 }

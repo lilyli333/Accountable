@@ -11,9 +11,7 @@ import CoreData
 
 class NewTaskViewController: UIViewController {
     
-    @IBAction func onTapPressed(_ sender: Any) {
-        self.view.endEditing(true)
-    }
+    
     @IBAction func addItemTapped(_ sender: UIButton) {
         performSegue(withIdentifier: "addNewItem", sender: self)
     }
@@ -25,6 +23,10 @@ class NewTaskViewController: UIViewController {
     @IBAction func saveTaskButtonTapped(_ sender: Any) {
         performSegue(withIdentifier: "newTaskToPin", sender: self)
     }
+    @IBAction func cancelButtonTapped(_ sender: UIButton) {
+        self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
+        
+    }
     @IBOutlet weak var taskNameTextField: UITextField!
     
     @IBOutlet weak var phoneNumberTextField: UITextField!
@@ -34,14 +36,11 @@ class NewTaskViewController: UIViewController {
     var items = [Item]()
     
     var task: Task?
+    var phoneNumber: String?
+    var taskName: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let newtask = NSEntityDescription.entity(forEntityName: "Task", in: CoreDataHelper.managedContext)
-        task = NSManagedObject(entity: newtask!, insertInto: CoreDataHelper.managedContext) as! Task
-        task?.setValue("", forKey: "title")
-        task?.setValue(Date(), forKey: "modificationTime")
-        task?.setValue("0", forKey: "phoneNumber")
     }
     
     override func didReceiveMemoryWarning() {
@@ -50,8 +49,8 @@ class NewTaskViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-                phoneNumberTextField.text = ""
-        taskNameTextField.text = ""
+        phoneNumberTextField.text = phoneNumber ?? ""
+        taskNameTextField.text = taskName ?? ""
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -62,23 +61,37 @@ class NewTaskViewController: UIViewController {
             itemViewController.item = item
         }
         else if segue.identifier == "newTaskToPin" {
-            let inputPinViewController = segue.destination as! InputPinViewController
-            inputPinViewController.fromSB = .saveNewTask
-            inputPinViewController.task = task!
-            inputPinViewController.items = items
-            inputPinViewController.taskName = taskNameTextField.text!
-            inputPinViewController.phoneNumber = phoneNumberTextField.text!
+            let num: Int? = Int(phoneNumberTextField.text!)
+            let title = taskNameTextField.text!
+            if num != nil && num!.digitCount == 10 && !title.isEmpty && items.count > 0{
+                let inputPinViewController = segue.destination as! InputPinViewController
+                inputPinViewController.fromSB = .saveNewTask
+                //inputPinViewController.task = task!
+                inputPinViewController.items = items
+                inputPinViewController.taskName = taskNameTextField.text!
+                inputPinViewController.phoneNumber = phoneNumberTextField.text!
+            }
+            else{
+                let alertController = UIAlertController(title: "cannot save task", message:
+                    "", preferredStyle: UIAlertControllerStyle.alert)
+                alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
+                self.present(alertController, animated: true, completion: nil)
+                return
+            }
+            
         }
         else if segue.identifier == "addNewItem" {
-            print(taskNameTextField.text!)
+            //            print(taskNameTextField.text!)
             let newItemViewController = segue.destination as! NewItemViewController
-//            task?.title = taskNameTextField.text!
-//            task?.phoneNumber = phoneNumberTextField.text! as! Int64
-//            task?.modificationTime = Date() as NSDate
-            task?.setValue(taskNameTextField.text, forKey: "title")
-            task?.setValue(Int(phoneNumberTextField.text!) ?? "0000000000", forKey: "phoneNumber")
-            task?.setValue(Date(), forKey: "modificationTime")
-            CoreDataHelper.saveToCoreData()
+            ////            task?.title = taskNameTextField.text!
+            ////            task?.phoneNumber = phoneNumberTextField.text! as! Int64
+            ////            task?.modificationTime = Date() as NSDate
+            //            task?.setValue(taskNameTextField.text, forKey: "title")
+            //            task?.setValue(Int(phoneNumberTextField.text!) ?? "0000000000", forKey: "phoneNumber")
+            //            task?.setValue(Date(), forKey: "modificationTime")
+            //            CoreDataHelper.saveToCoreData()
+            newItemViewController.taskName = taskNameTextField.text!
+            newItemViewController.phoneNumber = phoneNumberTextField.text!
             newItemViewController.itemNum = items.count + 1
         }
     }
@@ -86,24 +99,23 @@ class NewTaskViewController: UIViewController {
 
 extension NewTaskViewController: UITableViewDataSource {
     
-//        //for deleting a cell of item UNCOMMENT LATERRRRRRRR
-//            func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-//                    items.remove(at: indexPath.row)
-//                    let deleteItem = items[indexPath.row]
-//                    task?.removeFromItems(deleteItem)
-//                    CoreDataHelper.saveToCoreData()
-//                print(task!)
-//            }
+    //        //for deleting a cell of item UNCOMMENT LATERRRRRRRR
+//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+//        items.remove(at: indexPath.row)
+//        let deleteItem = items[indexPath.row]
+//        task?.removeFromItems(deleteItem)
+//        CoreDataHelper.saveToCoreData()
+//        print(task!)
+//    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(items.count)
         return items.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "itemCell", for: indexPath) as! ItemTableViewCell
         let row = indexPath.row
-        cell.itemTimeLabel.text = "\(ToStringHelper.toString(time: TimeInterval(items[row].itemTime)))"
-        cell.itemTitleLabel.text = items[row].itemTitle
+        cell.itemTimeLabel.text = "\(ToStringHelper.toString(time: TimeInterval(items[row].itemObjTime!)))"
+        cell.itemTitleLabel.text = items[row].itemObjTitle!
         return cell
     }
     func numberOfSections(in tableView: UITableView) -> Int {

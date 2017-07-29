@@ -1,15 +1,15 @@
 //
-//  PinViewController.swift
+//  ChangePinViewController.swift
 //  Accountable
 //
-//  Created by Lily Li on 7/26/17.
+//  Created by Lily Li on 7/28/17.
 //  Copyright © 2017 Lily Li. All rights reserved.
 //
 
 import UIKit
 
-class PinViewController: UIViewController {
-
+class ChangePinViewController: UIViewController {
+    
     @IBOutlet weak var firstLabel: UILabel!
     @IBOutlet weak var secondLabel: UILabel!
     @IBOutlet weak var thirdLabel: UILabel!
@@ -22,7 +22,7 @@ class PinViewController: UIViewController {
         
         pinTextField.becomeFirstResponder()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -49,13 +49,14 @@ class PinViewController: UIViewController {
             self.present(alertController, animated: true, completion: nil)
             return
         }
+        performSegue(withIdentifier: "changePinToInfo", sender: self)
     }
     @IBAction func pinTextFieldChanged(_ sender: UITextField) {
         let arr = Array(pinTextField.text!.characters)
         
         if arr.count >= 1 {
             firstLabel.text = "⚪"
-
+            
         } else {
             firstLabel.text = "-"
         }
@@ -75,6 +76,14 @@ class PinViewController: UIViewController {
             fourthLabel.text = "⚪"
         } else {
             fourthLabel.text = "-"
+        }
+        
+        if arr.count > 4 {
+            pinTextField.isUserInteractionEnabled = false
+            
+        }
+        else {
+            pinTextField.isUserInteractionEnabled = true
         }
     }
 }

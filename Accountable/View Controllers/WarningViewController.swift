@@ -31,7 +31,7 @@ class WarningViewController: UIViewController {
         
     }
     @IBAction func backButtonTapped(_ sender: Any) {
-        navigationController?.popToRootViewController(animated: true)
+        self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "startTaskNoTxt" {
