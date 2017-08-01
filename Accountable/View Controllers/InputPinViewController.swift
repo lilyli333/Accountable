@@ -85,7 +85,7 @@ class InputPinViewController: UIViewController {
                 fourthLabel.text = "-"
                 self.reloadInputViews()
                 warningLabel.text = "inccorect pin, please try again"
-                warningLabel.backgroundColor = ColorConversion.hexStringToUIColor(hex: "FF9966")
+                warningLabel.textColor = ColorConversion.hexStringToUIColor(hex: "FAEBD7")
                 warningLabel.layer.cornerRadius = 6
 
             }

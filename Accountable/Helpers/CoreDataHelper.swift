@@ -56,7 +56,11 @@ class CoreDataHelper {
             managedContext.delete(item)
         }
     }
-    //
+    static func deleteItem(item: Item, task: Task) {
+        managedContext.delete(item)
+        task.removeFromItems(item)
+        
+    }
     static func retrieveTask() -> [Task] {
         let fetchRequest = NSFetchRequest<Task>(entityName: "Task")
         do {

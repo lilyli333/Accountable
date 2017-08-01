@@ -31,6 +31,9 @@ class EditTaskViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        items = CoreDataHelper.getItemsArray(task: task!)
+        phoneNumberTextField.text = ("\(task!.phoneNumber)")
+        taskNameTextField.text = task!.title
     }
     
     override func didReceiveMemoryWarning() {
@@ -39,13 +42,19 @@ class EditTaskViewController: UIViewController {
     
     
     @IBAction func saveButtonTapped(_ sender: UIButton) {
-                
+        
         task?.setValue(phoneNumberTextField.text!, forKey: "phoneNumber")
         task?.setValue(taskNameTextField.text!, forKey: "title")
         task?.setValue(Date(), forKey: "modificationTime")
-
-        CoreDataHelper.saveToCoreData()
+        
+        for i in items {
+            i.task = task!
+            CoreDataHelper.saveToCoreData()
             
+        }
+        
+        print(CoreDataHelper.getItemsArray(task: task!))
+        
         let vc = presentingViewController!
         let pinVC = vc.presentingViewController!
         pinVC.dismiss(animated: false) {
@@ -55,7 +64,6 @@ class EditTaskViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        items = CoreDataHelper.getItemsArray(task: task!)
         phoneNumberTextField.text = ("\(task!.phoneNumber)")
         taskNameTextField.text = task!.title
     }
@@ -93,24 +101,28 @@ class EditTaskViewController: UIViewController {
 extension EditTaskViewController: UITableViewDataSource {
     
     //    //for deleting a cell of item UNCOMMENT LATERRRRRRRR
-    //        func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-    //            if editingStyle == .delete && items.count > 1 {
-    //                //items.remove(at: indexPath.row)
-    //                let deleteItem = items[indexPath.row]
-    //                task?.removeFromItems(deleteItem)
-    //                CoreDataHelper.saveToCoreData()
-    //            }
-    //            else{
-    //                let alertController = UIAlertController(title: "cannot delete item", message:
-    //                    "there has to be 1+ item in task!", preferredStyle: UIAlertControllerStyle.alert)
-    //                alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
-    //
-    //                self.present(alertController, animated: true, completion: nil)
-    //            }
-    //        }
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete && items.count > 1 {
+            let deleteItem: Item? = items[indexPath.row]
+            items.remove(at: indexPath.row)
+            
+            if deleteItem != nil {
+                CoreDataHelper.deleteItem(item: deleteItem!, task: task!)
+                CoreDataHelper.saveToCoreData()
+            }
+            itemsListTableViwe.reloadData()
+        }
+        else{
+            let alertController = UIAlertController(title: "cannot delete item", message:
+                "there has to be 1+ item in task!", preferredStyle: UIAlertControllerStyle.alert)
+            alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
+            
+            self.present(alertController, animated: true, completion: nil)
+        }
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        items = CoreDataHelper.getItemsArray(task: task!)
+        //items = CoreDataHelper.getItemsArray(task: task!)
         return items.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

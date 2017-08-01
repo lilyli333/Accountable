@@ -22,18 +22,18 @@ class ListViewController: UIViewController {
     }
 
     override func viewDidLoad() {
-        print("the list of tasks has been reloaded")
         super.viewDidLoad()
+        tabBarController?.tabBar.barTintColor = ColorConversion.hexStringToUIColor(hex: "EFEFEF")
         self.tabBarController?.delegate = self
         tasksListTableView.reloadData()
         tasks = CoreDataHelper.retrieveTask()
-        listNumLabel.text! = "(tasks.count) available lists"
+        listNumLabel.text! = "\(tasks.count) available list(s)"
     }
     
     override func viewWillAppear(_ animated: Bool) {
         tasks = CoreDataHelper.retrieveTask()
         tasksListTableView.reloadData()
-        listNumLabel.text! = "\(tasks.count) available lists"
+        listNumLabel.text! = "\(tasks.count) available list(s)"
     }
 
     override func didReceiveMemoryWarning() {
@@ -71,8 +71,7 @@ extension ListViewController: UITableViewDataSource {
             CoreDataHelper.managedContext.delete(deletingTask)
             tasks = CoreDataHelper.retrieveTask()
             tasksListTableView.reloadData()
-            print(tasks.count)
-            print(CoreDataHelper.retrieveTask().count)
+            listNumLabel.text! = "\(tasks.count) available list(s)"
             CoreDataHelper.saveToCoreData()
         }
     }

@@ -82,13 +82,10 @@ class ItemViewController : UIViewController {
                 newItem.setValue(itemTimePicker.countDownDuration, forKey: "itemTime")
                 newItem.setValue(itemDescriptionTextView.text!, forKey: "itemDescription")
                 newItem.setValue(taskViewController.items.count, forKey: "order")
-                newItem.task = taskViewController.task!
-                taskViewController.items = CoreDataHelper.getItemsArray(task: taskViewController.task!)
-                
+
+                taskViewController.items.append(newItem)
                 taskViewController.itemsListTableViwe.reloadData()
 
-                
-                taskViewController.items.append(newItem)
                 print(taskViewController.items)
                 print("...")
                 print(newItem)

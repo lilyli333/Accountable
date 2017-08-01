@@ -100,13 +100,10 @@ class NewTaskViewController: UIViewController {
 extension NewTaskViewController: UITableViewDataSource {
     
     //        //for deleting a cell of item UNCOMMENT LATERRRRRRRR
-//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-//        items.remove(at: indexPath.row)
-//        let deleteItem = items[indexPath.row]
-//        task?.removeFromItems(deleteItem)
-//        CoreDataHelper.saveToCoreData()
-//        print(task!)
-//    }
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        items.remove(at: indexPath.row)
+        itemsTableView.reloadData()
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
