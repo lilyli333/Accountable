@@ -40,11 +40,11 @@
 		82E3583F1F2A5E5900264201 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82E3583E1F2A5E5900264201 /* Settings.storyboard */; };
 		82E358411F2A6BBC00264201 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E358401F2A6BBC00264201 /* InfoViewController.swift */; };
 		82E358431F2A6C9F00264201 /* ChangeSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E358421F2A6C9F00264201 /* ChangeSettingsViewController.swift */; };
-		82E358451F2AA0BD00264201 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E358441F2AA0BD00264201 /* MainTabBarController.swift */; };
 		82E358471F2AAA2800264201 /* PinInput.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82E358461F2AAA2800264201 /* PinInput.storyboard */; };
 		82E358491F2C3F9200264201 /* ChangePinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E358481F2C3F9200264201 /* ChangePinViewController.swift */; };
 		82E358531F30026500264201 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82E358521F30026500264201 /* Assets.xcassets */; };
 		82E358551F301EAD00264201 /* AboutCreatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E358541F301EAD00264201 /* AboutCreatorViewController.swift */; };
+		82E358571F302D1200264201 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E358561F302D1200264201 /* MainTabBarController.swift */; };
 		82EE6D551F2679FD0074D7C9 /* ItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EE6D541F2679FD0074D7C9 /* ItemCollectionViewCell.swift */; };
 		82F312201F180ED3003D00F2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F3121F1F180ED3003D00F2 /* AppDelegate.swift */; };
 		82F312281F180ED3003D00F2 /* Accountable.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 82F312261F180ED3003D00F2 /* Accountable.xcdatamodeld */; };
@@ -89,11 +89,11 @@
 		82E3583E1F2A5E5900264201 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Settings.storyboard; path = Storyboards/Settings.storyboard; sourceTree = "<group>"; };
 		82E358401F2A6BBC00264201 /* InfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InfoViewController.swift; path = "View Controllers/InfoViewController.swift"; sourceTree = "<group>"; };
 		82E358421F2A6C9F00264201 /* ChangeSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChangeSettingsViewController.swift; path = "View Controllers/ChangeSettingsViewController.swift"; sourceTree = "<group>"; };
-		82E358441F2AA0BD00264201 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		82E358461F2AAA2800264201 /* PinInput.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = PinInput.storyboard; path = Storyboards/PinInput.storyboard; sourceTree = "<group>"; };
 		82E358481F2C3F9200264201 /* ChangePinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChangePinViewController.swift; path = "View Controllers/ChangePinViewController.swift"; sourceTree = "<group>"; };
 		82E358521F30026500264201 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../Assets.xcassets; sourceTree = "<group>"; };
 		82E358541F301EAD00264201 /* AboutCreatorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AboutCreatorViewController.swift; path = "View Controllers/AboutCreatorViewController.swift"; sourceTree = "<group>"; };
+		82E358561F302D1200264201 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainTabBarController.swift; path = "View Controllers/MainTabBarController.swift"; sourceTree = "<group>"; };
 		82EE6D541F2679FD0074D7C9 /* ItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItemCollectionViewCell.swift; path = Views/ItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		82F3121C1F180ED3003D00F2 /* Accountable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Accountable.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		82F3121F1F180ED3003D00F2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -192,6 +192,7 @@
 		82F312351F180F32003D00F2 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				82E358561F302D1200264201 /* MainTabBarController.swift */,
 				82E358251F27A92200264201 /* CameraViewController.swift */,
 				82E358421F2A6C9F00264201 /* ChangeSettingsViewController.swift */,
 				82CEC3A21F2268BF00CB1256 /* EditTaskViewController.swift */,
@@ -200,7 +201,6 @@
 				82E3583A1F29386200264201 /* InputPinViewController.swift */,
 				826A3C2E1F1FD49C0018137B /* ItemViewController.swift */,
 				826A3C341F1FD6ED0018137B /* ListViewController.swift */,
-				82E358441F2AA0BD00264201 /* MainTabBarController.swift */,
 				82E358341F291F0D00264201 /* NameViewController.swift */,
 				82CEC39E1F22635700CB1256 /* NewItemViewController.swift */,
 				82CEC39C1F2260E900CB1256 /* NewTaskViewController.swift */,
@@ -349,13 +349,13 @@
 				826A3C311F1FD5140018137B /* TaskViewController.swift in Sources */,
 				82E3582F1F29173C00264201 /* Constants.swift in Sources */,
 				826A3C4A1F2011670018137B /* Task+CoreDataClass.swift in Sources */,
+				82E358571F302D1200264201 /* MainTabBarController.swift in Sources */,
 				82FFCF691F188D9100EB75E0 /* ItemTableViewCell.swift in Sources */,
 				82EE6D551F2679FD0074D7C9 /* ItemCollectionViewCell.swift in Sources */,
 				82E3583B1F29386200264201 /* InputPinViewController.swift in Sources */,
 				826A3C4B1F2011670018137B /* Task+CoreDataProperties.swift in Sources */,
 				82F312201F180ED3003D00F2 /* AppDelegate.swift in Sources */,
 				826EFF651F26BF25005A94E1 /* User.swift in Sources */,
-				82E358451F2AA0BD00264201 /* MainTabBarController.swift in Sources */,
 				826A3C131F1D7A950018137B /* CoreDataHelper.swift in Sources */,
 				82E358331F291BCA00264201 /* Storyboard+Utility.swift in Sources */,
 				82E358491F2C3F9200264201 /* ChangePinViewController.swift in Sources */,
