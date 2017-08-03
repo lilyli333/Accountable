@@ -10,6 +10,9 @@ import UIKit
 
 class ChangeSettingsViewController: UIViewController {
 
+    @IBAction func tapGestureTapped(_ sender: Any) {
+        nameTextField.resignFirstResponder()
+    }
     @IBOutlet weak var nameTextField: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()

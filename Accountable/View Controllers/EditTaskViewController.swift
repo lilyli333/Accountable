@@ -10,6 +10,11 @@ import UIKit
 import CoreData
 
 class EditTaskViewController: UIViewController {
+    
+    @IBAction func tapGesture(_ sender: Any) {
+        taskNameTextField.resignFirstResponder()
+        phoneNumberTextField.resignFirstResponder()
+    }
     @IBOutlet weak var taskNameTextField: UITextField!
     
     @IBOutlet weak var phoneNumberTextField: UITextField!
@@ -20,11 +25,12 @@ class EditTaskViewController: UIViewController {
     var items = [Item]()
     
     @IBAction func cancelButtonTapped(_ sender: Any) {
-        let vc = presentingViewController!
-        let pinVC = vc.presentingViewController!
-        pinVC.dismiss(animated: false) {
-            vc.dismiss(animated: true, completion: nil)
-        }
+//        let vc = presentingViewController!
+//        let pinVC = vc.presentingViewController!
+//        pinVC.dismiss(animated: false) {
+//            vc.dismiss(animated: true, completion: nil)
+//        }
+        self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
     }
     @IBAction func backgroundTapped(_ sender: Any) {
         self.view.endEditing(true)
@@ -55,12 +61,12 @@ class EditTaskViewController: UIViewController {
         
         print(CoreDataHelper.getItemsArray(task: task!))
         
-        let vc = presentingViewController!
-        let pinVC = vc.presentingViewController!
-        pinVC.dismiss(animated: false) {
-            vc.dismiss(animated: true, completion: nil)
-        }
-        
+//        let vc = presentingViewController!
+//        let pinVC = vc.presentingViewController!
+//        pinVC.dismiss(animated: false) {
+//            vc.dismiss(animated: true, completion: nil)
+//        }
+        self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

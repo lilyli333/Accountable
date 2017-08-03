@@ -18,6 +18,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         UITabBar.appearance().tintColor = ColorConversion.hexStringToUIColor(hex: "FF9966")
+        let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as! UIView
+        if statusBar.responds(to:#selector(setter: UIView.backgroundColor)) {
+            statusBar.backgroundColor =  ColorConversion.hexStringToUIColor(hex: "FF9966")
+        }
+        UIApplication.shared.statusBarStyle = .lightContent
         configureInitialRootViewController(for: window)
         
         return true

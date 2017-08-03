@@ -14,7 +14,7 @@ class TaskViewController: UIViewController, MFMessageComposeViewControllerDelega
  
     @available(iOS 4.0, *)
     func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
-        
+        performSegue(withIdentifier: "startTask", sender: self)
     }
 
     @IBAction func editButtonTapped(_ sender: UIButton) {
@@ -48,12 +48,25 @@ class TaskViewController: UIViewController, MFMessageComposeViewControllerDelega
         numberItemsLabel.text = "items (\(items.count))"
         self.listItemsTableView.reloadData()
     }
+    func sendText(text: String) {
+            let controller = MFMessageComposeViewController()
+            controller.body = text
+            controller.recipients = ["\(task!.phoneNumber)"]
+            controller.messageComposeDelegate = self
+            self.present(controller, animated: true, completion: nil)
+    }
     
     @IBAction func startTaskButtonTapped(_ sender: UIButton) {
-        if (MFMessageComposeViewController.canSendText()){
-            performSegue(withIdentifier: "startTask", sender: self)
+        if (MFMessageComposeViewController.canSendText()){ 
+            let defaults = UserDefaults.standard
+            let name = defaults.string(forKey: "name")
+            let str = "\(name!) will begin the to-do list \"\(task!.title)\" soon."
+            sendText(text: str)
         }
         else{
+            let defaults = UserDefaults.standard
+            let name = defaults.string(forKey: "name")
+            print("\(name!) will begin the to-do list \"\(task!.title)\" soon.")
             performSegue(withIdentifier: "showWarning", sender: self)
         }
         
@@ -110,6 +123,7 @@ extension TaskViewController: UITableViewDataSource {
     //                self.present(alertController, animated: true, completion: nil)
     //            }
     //        }
+
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         items = CoreDataHelper.getItemsArray(task: task!)

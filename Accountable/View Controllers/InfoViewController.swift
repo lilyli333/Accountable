@@ -18,8 +18,6 @@ class InfoViewController: UIViewController {
         let defaults = UserDefaults.standard
         let name = defaults.string(forKey: "name")
         userNameLabel.text = name
-        print(name)
-        
     }
     override func viewWillAppear(_ animated: Bool) {
         let defaults = UserDefaults.standard

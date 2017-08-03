@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class TimerViewController: UIViewController {
     
@@ -18,6 +19,8 @@ class TimerViewController: UIViewController {
     let group = DispatchGroup()
     
     var canTxt = true
+    
+    let systemSoundID: SystemSoundID = 1304
     
     @IBAction func cancelButtonTapped(_ sender: Any) {
         performSegue(withIdentifier: "pinToCancel", sender: self)
@@ -57,6 +60,7 @@ class TimerViewController: UIViewController {
             }
             else{
                 if items.count > 1{
+                AudioServicesPlaySystemSound (systemSoundID)
                 items.remove(at: 0)
                 collectionView.reloadData()
                 seconds = getTime()
@@ -83,6 +87,7 @@ class TimerViewController: UIViewController {
             surveyViewController.task = task!
             surveyViewController.items = items
             surveyViewController.item = items[0]
+            AudioServicesPlaySystemSound (systemSoundID)
         }
         else if segue.identifier == "timerToCongrats" {
             let congratsViewController = segue.destination as! FinishTaskViewController
@@ -103,6 +108,7 @@ extension TimerViewController: UICollectionViewDelegateFlowLayout {
 //        let cellWidth = UIScreen.main.bounds.size.width
 //        return CGSize(width: cellWidth, height: 300)
 //    }
+    
 }
 
 extension TimerViewController: UICollectionViewDataSource {

@@ -11,7 +11,10 @@ import CoreData
 
 class NewTaskViewController: UIViewController {
     
-    
+    @IBAction func tapGestureTapped(_ sender: Any) {
+        taskNameTextField.resignFirstResponder()
+        phoneNumberTextField.resignFirstResponder()
+    }
     @IBAction func addItemTapped(_ sender: UIButton) {
         performSegue(withIdentifier: "addNewItem", sender: self)
     }

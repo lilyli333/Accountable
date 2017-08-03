@@ -28,12 +28,12 @@ class NameViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "setPin" {
-            if nameTextField.text != ""{
-                print(nameTextField.text)
+            let str = nameTextField.text!.removeWhiteSpaces()
+            if nameTextField.text != "" && str != ""{
                 let defaults = UserDefaults.standard
-                User.setName(name: nameTextField.text!)
+                User.setName(name: nameTextField.text!.trimmingCharacters(in: .whitespaces))
                 if let name = defaults.string(forKey: "name"){
-                    print(name)
+                    print("name:\(name)")
                 }
             }
             else {

@@ -45,12 +45,15 @@
 		82E358531F30026500264201 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82E358521F30026500264201 /* Assets.xcassets */; };
 		82E358551F301EAD00264201 /* AboutCreatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E358541F301EAD00264201 /* AboutCreatorViewController.swift */; };
 		82E358571F302D1200264201 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E358561F302D1200264201 /* MainTabBarController.swift */; };
+		82E358591F31087300264201 /* String+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E358581F31087300264201 /* String+Utilities.swift */; };
 		82EE6D551F2679FD0074D7C9 /* ItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EE6D541F2679FD0074D7C9 /* ItemCollectionViewCell.swift */; };
 		82F312201F180ED3003D00F2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F3121F1F180ED3003D00F2 /* AppDelegate.swift */; };
 		82F312281F180ED3003D00F2 /* Accountable.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 82F312261F180ED3003D00F2 /* Accountable.xcdatamodeld */; };
 		82F312461F181DB6003D00F2 /* ListTasksTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F312441F181DB6003D00F2 /* ListTasksTableViewCell.swift */; };
 		82F3124F1F181DD1003D00F2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82F3124D1F181DD1003D00F2 /* LaunchScreen.storyboard */; };
 		82F312501F181DD1003D00F2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82F3124E1F181DD1003D00F2 /* Main.storyboard */; };
+		82F7116B1F33CA27008D9ECA /* TutorialPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F7116A1F33CA27008D9ECA /* TutorialPageViewController.swift */; };
+		82F7116D1F33D97A008D9ECA /* TutorialSB1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F7116C1F33D97A008D9ECA /* TutorialSB1ViewController.swift */; };
 		82FFCF691F188D9100EB75E0 /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82FFCF681F188D9100EB75E0 /* ItemTableViewCell.swift */; };
 		82FFCF6C1F19346200EB75E0 /* Date+ConvertToString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82FFCF6B1F19346200EB75E0 /* Date+ConvertToString.swift */; };
 /* End PBXBuildFile section */
@@ -94,6 +97,7 @@
 		82E358521F30026500264201 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../Assets.xcassets; sourceTree = "<group>"; };
 		82E358541F301EAD00264201 /* AboutCreatorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AboutCreatorViewController.swift; path = "View Controllers/AboutCreatorViewController.swift"; sourceTree = "<group>"; };
 		82E358561F302D1200264201 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainTabBarController.swift; path = "View Controllers/MainTabBarController.swift"; sourceTree = "<group>"; };
+		82E358581F31087300264201 /* String+Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "String+Utilities.swift"; path = "Extensions/String+Utilities.swift"; sourceTree = "<group>"; };
 		82EE6D541F2679FD0074D7C9 /* ItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItemCollectionViewCell.swift; path = Views/ItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		82F3121C1F180ED3003D00F2 /* Accountable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Accountable.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		82F3121F1F180ED3003D00F2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -102,6 +106,8 @@
 		82F312441F181DB6003D00F2 /* ListTasksTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListTasksTableViewCell.swift; path = Views/ListTasksTableViewCell.swift; sourceTree = "<group>"; };
 		82F3124D1F181DD1003D00F2 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Storyboards/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		82F3124E1F181DD1003D00F2 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Storyboards/Main.storyboard; sourceTree = "<group>"; };
+		82F7116A1F33CA27008D9ECA /* TutorialPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TutorialPageViewController.swift; path = "View Controllers/TutorialPageViewController.swift"; sourceTree = "<group>"; };
+		82F7116C1F33D97A008D9ECA /* TutorialSB1ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TutorialSB1ViewController.swift; path = "View Controllers/TutorialSB1ViewController.swift"; sourceTree = "<group>"; };
 		82FFCF681F188D9100EB75E0 /* ItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItemTableViewCell.swift; path = Views/ItemTableViewCell.swift; sourceTree = "<group>"; };
 		82FFCF6B1F19346200EB75E0 /* Date+ConvertToString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Date+ConvertToString.swift"; path = "Extensions/Date+ConvertToString.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -211,6 +217,8 @@
 				82E3582B1F2905D400264201 /* WarningViewController.swift */,
 				82E358481F2C3F9200264201 /* ChangePinViewController.swift */,
 				82E358541F301EAD00264201 /* AboutCreatorViewController.swift */,
+				82F7116A1F33CA27008D9ECA /* TutorialPageViewController.swift */,
+				82F7116C1F33D97A008D9ECA /* TutorialSB1ViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -256,6 +264,7 @@
 				82E358321F291BCA00264201 /* Storyboard+Utility.swift */,
 				82E358381F2930C000264201 /* Int+Digit.swift */,
 				82E3583C1F2A4BF600264201 /* UIColor+Utilities.swift */,
+				82E358581F31087300264201 /* String+Utilities.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -344,11 +353,13 @@
 				826A3C4D1F2011670018137B /* Item+CoreDataProperties.swift in Sources */,
 				82E358261F27A92200264201 /* CameraViewController.swift in Sources */,
 				82E3582A1F280A0400264201 /* FinishTaskViewController.swift in Sources */,
+				82F7116B1F33CA27008D9ECA /* TutorialPageViewController.swift in Sources */,
 				82CEC39D1F2260E900CB1256 /* NewTaskViewController.swift in Sources */,
 				82E358431F2A6C9F00264201 /* ChangeSettingsViewController.swift in Sources */,
 				826A3C311F1FD5140018137B /* TaskViewController.swift in Sources */,
 				82E3582F1F29173C00264201 /* Constants.swift in Sources */,
 				826A3C4A1F2011670018137B /* Task+CoreDataClass.swift in Sources */,
+				82E358591F31087300264201 /* String+Utilities.swift in Sources */,
 				82E358571F302D1200264201 /* MainTabBarController.swift in Sources */,
 				82FFCF691F188D9100EB75E0 /* ItemTableViewCell.swift in Sources */,
 				82EE6D551F2679FD0074D7C9 /* ItemCollectionViewCell.swift in Sources */,
@@ -371,6 +382,7 @@
 				82E358351F291F0D00264201 /* NameViewController.swift in Sources */,
 				82E358551F301EAD00264201 /* AboutCreatorViewController.swift in Sources */,
 				82FFCF6C1F19346200EB75E0 /* Date+ConvertToString.swift in Sources */,
+				82F7116D1F33D97A008D9ECA /* TutorialSB1ViewController.swift in Sources */,
 				82CEC3A11F22674100CB1256 /* DisplayItemsTableViewCell.swift in Sources */,
 				826A3C351F1FD6ED0018137B /* ListViewController.swift in Sources */,
 				82F312281F180ED3003D00F2 /* Accountable.xcdatamodeld in Sources */,

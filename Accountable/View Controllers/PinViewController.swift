@@ -54,24 +54,28 @@ class PinViewController: UIViewController {
         let arr = Array(pinTextField.text!.characters)
         
         if arr.count >= 1 {
+            firstLabel.font = firstLabel.font.withSize(20)
             firstLabel.text = "⚪"
-
         } else {
             firstLabel.text = "-"
         }
         
         if arr.count >= 2 {
+            secondLabel.font = secondLabel.font.withSize(20)
             secondLabel.text = "⚪"
         } else {
             secondLabel.text = "-"
         }
         
         if arr.count >= 3 {
+            thirdLabel.font = thirdLabel.font.withSize(20)
             thirdLabel.text = "⚪"
         } else {
-            thirdLabel.text = "-"        }
+            thirdLabel.text = "-"
+        }
         
         if arr.count >= 4 {
+            fourthLabel.font = fourthLabel.font.withSize(20)
             fourthLabel.text = "⚪"
         } else {
             fourthLabel.text = "-"
