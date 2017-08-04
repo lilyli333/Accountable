@@ -57,13 +57,15 @@ class PinViewController: UIViewController {
             firstLabel.font = firstLabel.font.withSize(20)
             firstLabel.text = "⚪"
         } else {
+            firstLabel.font = firstLabel.font.withSize(70)
             firstLabel.text = "-"
         }
-        
         if arr.count >= 2 {
+            
             secondLabel.font = secondLabel.font.withSize(20)
             secondLabel.text = "⚪"
         } else {
+            secondLabel.font = firstLabel.font.withSize(70)
             secondLabel.text = "-"
         }
         
@@ -71,6 +73,7 @@ class PinViewController: UIViewController {
             thirdLabel.font = thirdLabel.font.withSize(20)
             thirdLabel.text = "⚪"
         } else {
+            thirdLabel.font = firstLabel.font.withSize(70)
             thirdLabel.text = "-"
         }
         
@@ -78,6 +81,7 @@ class PinViewController: UIViewController {
             fourthLabel.font = fourthLabel.font.withSize(20)
             fourthLabel.text = "⚪"
         } else {
+            fourthLabel.font = firstLabel.font.withSize(70)
             fourthLabel.text = "-"
         }
     }

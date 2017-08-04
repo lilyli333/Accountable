@@ -78,20 +78,25 @@ class CameraViewController: UIViewController, MFMessageComposeViewControllerDele
             do{
                 timerViewController.items.remove(at: 0)
                 timerViewController.seconds = timerViewController.getTime()
+                timerViewController.collectionView.reloadData()
             }
             catch{
                 print(error)
             }
+            timerViewController.results.append(1)
             
         }
-        else if segue.identifier == "finishedTask" {
-            let congratsViewConroller = segue.destination as! FinishTaskViewController
-            congratsViewConroller.task = task!
-        }
+//        else if segue.identifier == "finishedTask" {
+//            let congratsViewConroller = segue.destination as! FinishTaskViewController
+//            congratsViewConroller.task = task!
+//        }
     }
     
     func sendText(image: UIImage) {
-        if (MFMessageComposeViewController.canSendText() && MFMessageComposeViewController.canSendAttachments()) {
+        let defaults = UserDefaults.standard
+        let canText = defaults.integer(forKey: "canText")
+        
+        if (MFMessageComposeViewController.canSendText() && MFMessageComposeViewController.canSendAttachments() && canText == 1 ) {
             let controller = MFMessageComposeViewController()
             controller.recipients = ["\(task!.phoneNumber)"]
             let imageData = UIImagePNGRepresentation(image)
@@ -101,17 +106,18 @@ class CameraViewController: UIViewController, MFMessageComposeViewControllerDele
         }
         else{
             print("DEVICE CANNOT SEND MSG")
+            return
         }
     }
     
     func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
         controller.dismiss(animated: true, completion: nil)
-        if items.count == 1{
-            performSegue(withIdentifier: "finishedTask", sender: self)
-        }
-        else{
+//        if items.count == 1{
+//            performSegue(withIdentifier: "finishedTask", sender: self)
+//        }
+//        else{
             performSegue(withIdentifier: "backToTimer", sender: self)
-        }
+//        }
         
     }
     
@@ -135,7 +141,7 @@ extension CameraViewController : AVCapturePhotoCaptureDelegate {
                 return
         }
         let capturedImage = UIImage.init(data: imageData , scale: 1.0)
-        if let image = capturedImage {
+        if let image = capturedImage{
             sendText(image: image)
         }
     }

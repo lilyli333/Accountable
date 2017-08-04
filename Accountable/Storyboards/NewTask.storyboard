@@ -41,7 +41,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="adc-Po-iUY">
-                                                    <rect key="frame" x="10" y="15" width="103" height="40"/>
+                                                    <rect key="frame" x="10" y="15" width="300" height="40"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="qnY-1L-JMb"/>
                                                     </constraints>
@@ -56,7 +56,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Im-dc-a6E">
-                                                    <rect key="frame" x="0.0" y="99" width="375" height="1"/>
+                                                    <rect key="frame" x="0.0" y="99" width="320" height="1"/>
                                                     <color key="backgroundColor" red="0.99937158820000005" green="0.64719891549999997" blue="0.51220887900000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="1" id="5E4-xA-cSC"/>
@@ -84,6 +84,7 @@
                                                 <constraint firstItem="adc-Po-iUY" firstAttribute="leading" secondItem="vSl-S6-vin" secondAttribute="leading" constant="10" id="CoT-zd-mmf"/>
                                                 <constraint firstItem="8Im-dc-a6E" firstAttribute="top" secondItem="KJP-eR-DIP" secondAttribute="bottom" constant="15" id="Fiv-4r-fqd"/>
                                                 <constraint firstAttribute="bottom" secondItem="8Im-dc-a6E" secondAttribute="bottom" id="GGN-hb-uQl"/>
+                                                <constraint firstAttribute="trailing" secondItem="adc-Po-iUY" secondAttribute="trailing" constant="10" id="MgD-Gy-Qbl"/>
                                                 <constraint firstAttribute="trailing" secondItem="8Im-dc-a6E" secondAttribute="trailing" id="hHC-tS-NDh"/>
                                                 <constraint firstItem="KJP-eR-DIP" firstAttribute="leading" secondItem="vSl-S6-vin" secondAttribute="leading" constant="10" id="tyF-jq-lwC"/>
                                             </constraints>

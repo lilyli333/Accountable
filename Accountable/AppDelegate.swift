@@ -8,9 +8,10 @@
 
 import UIKit
 import CoreData
+import MessageUI
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, MFMessageComposeViewControllerDelegate {
     
     var window: UIWindow?
     
@@ -25,8 +26,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIApplication.shared.statusBarStyle = .lightContent
         configureInitialRootViewController(for: window)
         
+        if (MFMessageComposeViewController.canSendText()) {
+                User.deviceCanSendText(bool: true)
+                User.setText(num: 1)
+        }
+        else{
+            User.deviceCanSendText(bool: false)
+            User.setText(num: 0)
+        }
         return true
     }
+    func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {}
     
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -109,6 +119,7 @@ extension AppDelegate {
             initialViewController = UIStoryboard.initialViewController(for: .main)
         }
         else {
+            User.setTime(seconds: 300.0)
             initialViewController = UIStoryboard.initialViewController(for: .namepinselect)
         }
         

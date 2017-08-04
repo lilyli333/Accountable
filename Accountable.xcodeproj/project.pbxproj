@@ -54,6 +54,8 @@
 		82F312501F181DD1003D00F2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82F3124E1F181DD1003D00F2 /* Main.storyboard */; };
 		82F7116B1F33CA27008D9ECA /* TutorialPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F7116A1F33CA27008D9ECA /* TutorialPageViewController.swift */; };
 		82F7116D1F33D97A008D9ECA /* TutorialSB1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F7116C1F33D97A008D9ECA /* TutorialSB1ViewController.swift */; };
+		82F7116F1F34E870008D9ECA /* ResultsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F7116E1F34E870008D9ECA /* ResultsTableViewCell.swift */; };
+		82F711711F34F773008D9ECA /* TutorialSB2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F711701F34F773008D9ECA /* TutorialSB2ViewController.swift */; };
 		82FFCF691F188D9100EB75E0 /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82FFCF681F188D9100EB75E0 /* ItemTableViewCell.swift */; };
 		82FFCF6C1F19346200EB75E0 /* Date+ConvertToString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82FFCF6B1F19346200EB75E0 /* Date+ConvertToString.swift */; };
 /* End PBXBuildFile section */
@@ -108,6 +110,8 @@
 		82F3124E1F181DD1003D00F2 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Storyboards/Main.storyboard; sourceTree = "<group>"; };
 		82F7116A1F33CA27008D9ECA /* TutorialPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TutorialPageViewController.swift; path = "View Controllers/TutorialPageViewController.swift"; sourceTree = "<group>"; };
 		82F7116C1F33D97A008D9ECA /* TutorialSB1ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TutorialSB1ViewController.swift; path = "View Controllers/TutorialSB1ViewController.swift"; sourceTree = "<group>"; };
+		82F7116E1F34E870008D9ECA /* ResultsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ResultsTableViewCell.swift; path = Views/ResultsTableViewCell.swift; sourceTree = "<group>"; };
+		82F711701F34F773008D9ECA /* TutorialSB2ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TutorialSB2ViewController.swift; path = "View Controllers/TutorialSB2ViewController.swift"; sourceTree = "<group>"; };
 		82FFCF681F188D9100EB75E0 /* ItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItemTableViewCell.swift; path = Views/ItemTableViewCell.swift; sourceTree = "<group>"; };
 		82FFCF6B1F19346200EB75E0 /* Date+ConvertToString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Date+ConvertToString.swift"; path = "Extensions/Date+ConvertToString.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -191,6 +195,7 @@
 				82F312441F181DB6003D00F2 /* ListTasksTableViewCell.swift */,
 				82CEC3A01F22674100CB1256 /* DisplayItemsTableViewCell.swift */,
 				82EE6D541F2679FD0074D7C9 /* ItemCollectionViewCell.swift */,
+				82F7116E1F34E870008D9ECA /* ResultsTableViewCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -198,8 +203,9 @@
 		82F312351F180F32003D00F2 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				82E358561F302D1200264201 /* MainTabBarController.swift */,
+				82E358541F301EAD00264201 /* AboutCreatorViewController.swift */,
 				82E358251F27A92200264201 /* CameraViewController.swift */,
+				82E358481F2C3F9200264201 /* ChangePinViewController.swift */,
 				82E358421F2A6C9F00264201 /* ChangeSettingsViewController.swift */,
 				82CEC3A21F2268BF00CB1256 /* EditTaskViewController.swift */,
 				82E358291F280A0400264201 /* FinishTaskViewController.swift */,
@@ -207,6 +213,7 @@
 				82E3583A1F29386200264201 /* InputPinViewController.swift */,
 				826A3C2E1F1FD49C0018137B /* ItemViewController.swift */,
 				826A3C341F1FD6ED0018137B /* ListViewController.swift */,
+				82E358561F302D1200264201 /* MainTabBarController.swift */,
 				82E358341F291F0D00264201 /* NameViewController.swift */,
 				82CEC39E1F22635700CB1256 /* NewItemViewController.swift */,
 				82CEC39C1F2260E900CB1256 /* NewTaskViewController.swift */,
@@ -214,11 +221,10 @@
 				826EFF611F26B5D9005A94E1 /* SurveyViewController.swift */,
 				826A3C301F1FD5140018137B /* TaskViewController.swift */,
 				82CEC3921F21252900CB1256 /* TimerViewController.swift */,
-				82E3582B1F2905D400264201 /* WarningViewController.swift */,
-				82E358481F2C3F9200264201 /* ChangePinViewController.swift */,
-				82E358541F301EAD00264201 /* AboutCreatorViewController.swift */,
 				82F7116A1F33CA27008D9ECA /* TutorialPageViewController.swift */,
 				82F7116C1F33D97A008D9ECA /* TutorialSB1ViewController.swift */,
+				82E3582B1F2905D400264201 /* WarningViewController.swift */,
+				82F711701F34F773008D9ECA /* TutorialSB2ViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -368,6 +374,7 @@
 				82F312201F180ED3003D00F2 /* AppDelegate.swift in Sources */,
 				826EFF651F26BF25005A94E1 /* User.swift in Sources */,
 				826A3C131F1D7A950018137B /* CoreDataHelper.swift in Sources */,
+				82F7116F1F34E870008D9ECA /* ResultsTableViewCell.swift in Sources */,
 				82E358331F291BCA00264201 /* Storyboard+Utility.swift in Sources */,
 				82E358491F2C3F9200264201 /* ChangePinViewController.swift in Sources */,
 				82CEC39B1F21549100CB1256 /* ToStringHelper.swift in Sources */,
@@ -378,6 +385,7 @@
 				82E3583D1F2A4BF600264201 /* UIColor+Utilities.swift in Sources */,
 				82E3582C1F2905D400264201 /* WarningViewController.swift in Sources */,
 				82E358371F292EE600264201 /* PinViewController.swift in Sources */,
+				82F711711F34F773008D9ECA /* TutorialSB2ViewController.swift in Sources */,
 				82CEC3A31F2268BF00CB1256 /* EditTaskViewController.swift in Sources */,
 				82E358351F291F0D00264201 /* NameViewController.swift in Sources */,
 				82E358551F301EAD00264201 /* AboutCreatorViewController.swift in Sources */,

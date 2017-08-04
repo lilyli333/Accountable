@@ -18,5 +18,20 @@ class User {
         let defaults = UserDefaults.standard
         defaults.set(pin, forKey: "pin")
     }
+    
+    static func setText (num: Int) {
+        let defaults = UserDefaults.standard
+        defaults.set(num, forKey: "canText")
+    }
+    static func deviceCanSendText (bool: Bool) {
+        let defaults = UserDefaults.standard
+        defaults.set(bool, forKey: "deviceText")
+    }
+    
+    static func setTime(seconds: Double) {
+        let defaults = UserDefaults.standard
+        defaults.set(seconds, forKey: "restTime")
+
+    }
 }
 

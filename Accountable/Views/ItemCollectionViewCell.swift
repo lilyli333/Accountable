@@ -10,6 +10,7 @@ import UIKit
 
 class ItemCollectionViewCell: UICollectionViewCell {
     
+    @IBOutlet weak var currentTaskLabel: UILabel!
     @IBOutlet weak var itemTimeLabel: UILabel!
     @IBOutlet weak var itemDescriptionTextView: UITextView!
     @IBOutlet weak var itemTitleLabel: UILabel!

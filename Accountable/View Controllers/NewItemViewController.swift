@@ -10,8 +10,7 @@ import UIKit
 import CoreData
 
 class NewItemViewController : UIViewController {
-    
-    
+        
     @IBAction func backgroundTapped(_ sender: Any) {
         self.view.endEditing(true)
     }

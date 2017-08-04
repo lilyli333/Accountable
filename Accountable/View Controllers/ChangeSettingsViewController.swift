@@ -10,16 +10,29 @@ import UIKit
 
 class ChangeSettingsViewController: UIViewController {
 
+    @IBOutlet weak var restTimePicker: UIDatePicker!
     @IBAction func tapGestureTapped(_ sender: Any) {
         nameTextField.resignFirstResponder()
+        User.setTime(seconds: restTimePicker.countDownDuration)
     }
     @IBOutlet weak var nameTextField: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
         let defaults = UserDefaults.standard
         nameTextField.text = defaults.string(forKey: Constants.UserDefaults.name)
+        let time = defaults.double(forKey: "restTime")
+        restTimePicker.countDownDuration = time
     }
-
+   
+    @IBAction func backButtonTapped(_ sender: Any) {
+        User.setTime(seconds: restTimePicker.countDownDuration)
+         let defaults = UserDefaults.standard
+        let time = defaults.double(forKey: "restTime")
+        print(time)
+    }
+    @IBAction func timeChanged(_ sender: Any) {
+        User.setTime(seconds: restTimePicker.countDownDuration)
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

@@ -136,6 +136,7 @@ extension EditTaskViewController: UITableViewDataSource {
         let row = indexPath.row
         cell.itemTimeLabel.text = "\(ToStringHelper.toString(time: TimeInterval(items[row].itemTime)))"
         cell.itemTitleLabel.text = items[row].itemTitle
+        cell.itemTitleLabel.adjustsFontSizeToFitWidth = true
         return cell
     }
     func numberOfSections(in tableView: UITableView) -> Int {

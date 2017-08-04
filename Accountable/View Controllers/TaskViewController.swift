@@ -14,6 +14,7 @@ class TaskViewController: UIViewController, MFMessageComposeViewControllerDelega
  
     @available(iOS 4.0, *)
     func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
+        controller.dismiss(animated: true, completion: nil)
         performSegue(withIdentifier: "startTask", sender: self)
     }
 
@@ -49,30 +50,33 @@ class TaskViewController: UIViewController, MFMessageComposeViewControllerDelega
         self.listItemsTableView.reloadData()
     }
     func sendText(text: String) {
+        let defaults = UserDefaults.standard
+        let canText = defaults.integer(forKey: "canText")
+        if (MFMessageComposeViewController.canSendText() && canText == 1) {
+
             let controller = MFMessageComposeViewController()
             controller.body = text
             controller.recipients = ["\(task!.phoneNumber)"]
             controller.messageComposeDelegate = self
             self.present(controller, animated: true, completion: nil)
+        }
+        else {
+            return
+        }
     }
     
     @IBAction func startTaskButtonTapped(_ sender: UIButton) {
-        if (MFMessageComposeViewController.canSendText()){ 
+        let defaults = UserDefaults.standard
+        let canText = defaults.integer(forKey: "canText")
+        
+        if (canText == 1){
             let defaults = UserDefaults.standard
             let name = defaults.string(forKey: "name")
             let str = "\(name!) will begin the to-do list \"\(task!.title)\" soon."
             sendText(text: str)
         }
         else{
-            let defaults = UserDefaults.standard
-            let name = defaults.string(forKey: "name")
-            print("\(name!) will begin the to-do list \"\(task!.title)\" soon.")
             performSegue(withIdentifier: "showWarning", sender: self)
-        }
-        
-        let defaults = UserDefaults.standard
-        if let name = defaults.string(forKey: "name"){
-            print(name)
         }
     }
     
@@ -85,6 +89,7 @@ class TaskViewController: UIViewController, MFMessageComposeViewControllerDelega
             let timerViewController = segue.destination as! TimerViewController
             timerViewController.task = task
             timerViewController.items = items
+            timerViewController.originalItems = items
         }
         else if segue.identifier == "taskToPin" {
             let inputPinViewController = segue.destination as! InputPinViewController
@@ -135,6 +140,7 @@ extension TaskViewController: UITableViewDataSource {
         let row = indexPath.row
         cell.durationLabel.text = "\(ToStringHelper.toString(time: TimeInterval(items[row].itemTime)))"
         cell.itemTitleLabel.text = items[row].itemTitle
+        cell.itemTitleLabel.adjustsFontSizeToFitWidth = true
         cell.itemDescriptionTextView.text = items[row].itemDescription
         print("printing")
         return cell

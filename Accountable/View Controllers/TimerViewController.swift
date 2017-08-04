@@ -12,13 +12,14 @@ import AVFoundation
 class TimerViewController: UIViewController {
     
     var items = [Item]()
+    var originalItems = [Item]()
     var task: Task?
+    
+    var results = [Int]()
     
     var seconds = 0
     var timer = Timer()
     let group = DispatchGroup()
-    
-    var canTxt = true
     
     let systemSoundID: SystemSoundID = 1304
     
@@ -37,11 +38,11 @@ class TimerViewController: UIViewController {
         self.tabBarController?.tabBar.isHidden = true
         taskNameLabel.text = task?.title
         seconds = getTime()
-        runTimer()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        runTimer()
     }
     
     func runTimer() {
@@ -49,27 +50,13 @@ class TimerViewController: UIViewController {
     }
     
     func updateTimer() {
+        
         if seconds < 1 {
             timer.invalidate()
             seconds = 0
-            print(items.count)
             collectionView.reloadData()
-            print(seconds)
-            if canTxt == true{
-                performSegue(withIdentifier: "showSurvey", sender: self)
-            }
-            else{
-                if items.count > 1{
-                AudioServicesPlaySystemSound (systemSoundID)
-                items.remove(at: 0)
-                collectionView.reloadData()
-                seconds = getTime()
-                runTimer()
-                }
-                else{
-                    performSegue(withIdentifier: "timerToCongrats", sender: self)
-                }
-            }
+            performSegue(withIdentifier: "showSurvey", sender: self)
+            // AudioServicesPlaySystemSound (systemSoundID)
         }
         else {
             seconds -= 10
@@ -86,12 +73,17 @@ class TimerViewController: UIViewController {
             let surveyViewController = segue.destination as! SurveyViewController
             surveyViewController.task = task!
             surveyViewController.items = items
-            surveyViewController.item = items[0]
-            AudioServicesPlaySystemSound (systemSoundID)
-        }
-        else if segue.identifier == "timerToCongrats" {
-            let congratsViewController = segue.destination as! FinishTaskViewController
-            congratsViewController.task = task!
+            surveyViewController.originalItems = originalItems
+            surveyViewController.results = results
+            
+            if items.count > 1{
+                surveyViewController.item = items[0]
+                collectionView.reloadData()
+            }
+            else{
+                surveyViewController.isLastTime = true
+                collectionView.reloadData()
+            }
         }
         else if segue.identifier == "pinToCancel" {
             let inputPinViewController = segue.destination as! InputPinViewController
@@ -100,14 +92,6 @@ class TimerViewController: UIViewController {
     }
     @IBAction func unwindSegueToTimer(for segue: UIStoryboardSegue, sender: Any) {
     }
-
-}
-
-extension TimerViewController: UICollectionViewDelegateFlowLayout {
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        let cellWidth = UIScreen.main.bounds.size.width
-//        return CGSize(width: cellWidth, height: 300)
-//    }
     
 }
 
@@ -123,10 +107,17 @@ extension TimerViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "itemCollectionViewCell", for: indexPath) as! ItemCollectionViewCell
         let row = indexPath.row
+        if row == 0 {
+            cell.currentTaskLabel.text = "⭐ current task"
+        }
+        else {
+            cell.currentTaskLabel.text = ""
+        }
         cell.itemTitleLabel.text = items[row].itemTitle
         print(items[row].itemDescription)
         cell.itemDescriptionTextView.text = items[row].itemDescription
         cell.itemTimeLabel.text = ToStringHelper.timeString(time: items[row].itemTime)
+        cell.itemTimeLabel.adjustsFontSizeToFitWidth = true
         return cell
     }
     

@@ -61,6 +61,7 @@ class NewTaskViewController: UIViewController {
             let itemViewController = segue.destination as! NewItemViewController
             let indexPath = itemsTableView.indexPathForSelectedRow!
             let item = items[indexPath.row]
+             itemViewController.itemNum = indexPath.row + 1
             itemViewController.item = item
         }
         else if segue.identifier == "newTaskToPin" {
@@ -116,6 +117,7 @@ extension NewTaskViewController: UITableViewDataSource {
         let row = indexPath.row
         cell.itemTimeLabel.text = "\(ToStringHelper.toString(time: TimeInterval(items[row].itemObjTime!)))"
         cell.itemTitleLabel.text = items[row].itemObjTitle!
+        cell.itemTitleLabel.adjustsFontSizeToFitWidth = true
         return cell
     }
     func numberOfSections(in tableView: UITableView) -> Int {

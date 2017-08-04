@@ -87,6 +87,7 @@ extension ListViewController: UITableViewDataSource {
         let task = tasks[indexPath.row]
         print(task)
         cell.taskTitleLabel.text = task.title
+        cell.taskTitleLabel.adjustsFontSizeToFitWidth = true
         cell.taskModificationTimeLabel.text = task.modificationTime.convertToString()
         return cell
     }

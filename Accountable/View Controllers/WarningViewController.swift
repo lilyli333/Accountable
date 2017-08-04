@@ -36,9 +36,9 @@ class WarningViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "startTaskNoTxt" {
             let timerViewController = segue.destination as! TimerViewController
-            timerViewController.canTxt = false
             timerViewController.task = task!
             timerViewController.items = items
+            timerViewController.originalItems = items
         }
     }
 }
