@@ -14,6 +14,10 @@ class CameraViewController: UIViewController, MFMessageComposeViewControllerDele
     
     var task: Task?
     var items = [Item]()
+    var didFinish: Bool? = false
+    var results = [Int]()
+    var originalItems = [Item]()
+
     
     @IBOutlet weak var takePhotoButton: UIButton!
     @IBOutlet weak var cameraPreviewView: UIView!
@@ -75,6 +79,7 @@ class CameraViewController: UIViewController, MFMessageComposeViewControllerDele
             let timerViewController = segue.destination as! TimerViewController
             timerViewController.task = task!
             timerViewController.items = items
+            timerViewController.results = results
             do{
                 timerViewController.items.remove(at: 0)
                 timerViewController.seconds = timerViewController.getTime()
@@ -86,10 +91,12 @@ class CameraViewController: UIViewController, MFMessageComposeViewControllerDele
             timerViewController.results.append(1)
             
         }
-//        else if segue.identifier == "finishedTask" {
-//            let congratsViewConroller = segue.destination as! FinishTaskViewController
-//            congratsViewConroller.task = task!
-//        }
+        else if segue.identifier == "finishedTask" {
+            let congratsViewController = segue.destination as! FinishTaskViewController
+            congratsViewController.task = task!
+            congratsViewController.results = results
+            congratsViewController.originalItems = originalItems
+        }
     }
     
     func sendText(image: UIImage) {
@@ -112,12 +119,12 @@ class CameraViewController: UIViewController, MFMessageComposeViewControllerDele
     
     func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
         controller.dismiss(animated: true, completion: nil)
-//        if items.count == 1{
-//            performSegue(withIdentifier: "finishedTask", sender: self)
-//        }
-//        else{
+        if didFinish == true{
+            performSegue(withIdentifier: "finishedTask", sender: self)
+        }
+        else{
             performSegue(withIdentifier: "backToTimer", sender: self)
-//        }
+        }
         
     }
     

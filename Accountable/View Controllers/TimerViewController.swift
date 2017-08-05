@@ -81,6 +81,7 @@ class TimerViewController: UIViewController {
                 collectionView.reloadData()
             }
             else{
+                surveyViewController.item = items[0]
                 surveyViewController.isLastTime = true
                 collectionView.reloadData()
             }

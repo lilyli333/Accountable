@@ -94,8 +94,12 @@ class SurveyViewController: UIViewController, MFMessageComposeViewControllerDele
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showCamera" {
             let cameraViewController = segue.destination as! CameraViewController
+
+            cameraViewController.didFinish = isLastTime
             cameraViewController.task = task!
             cameraViewController.items = items
+            cameraViewController.results = results
+            cameraViewController.originalItems = originalItems
         }
         else if segue.identifier == "unfinishedTask" {
             let timerViewController = segue.destination as! TimerViewController
