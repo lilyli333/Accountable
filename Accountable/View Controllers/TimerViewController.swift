@@ -121,5 +121,11 @@ extension TimerViewController: UICollectionViewDataSource {
         cell.itemTimeLabel.adjustsFontSizeToFitWidth = true
         return cell
     }
+}
     
+    extension TimerViewController: UICollectionViewDelegateFlowLayout {
+        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+            let cellWidth = UIScreen.main.bounds.size.width
+            return CGSize(width: cellWidth, height: 300)
+        }
 }
