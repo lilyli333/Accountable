@@ -65,26 +65,21 @@ class SurveyViewController: UIViewController, MFMessageComposeViewControllerDele
         if seconds! < 1 {
             timer.invalidate()
             didFinish = false
-            if isLastTime == true {
-                performSegue(withIdentifier: "surveyToCongrats", sender: self)
-
-            }
-            else{
-                performSegue(withIdentifier: "unfinishedTask", sender: self)
-            }
+            
+            noButtonTapped(self)
         }
         else {
             seconds! -= 10
             timeLabel.text = ToStringHelper.timeString(time: TimeInterval(seconds!))
         }
     }
-
-
+    
+    
     
     func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
         controller.dismiss(animated: true, completion: nil)
-        if didFinish == true{
-            performSegue(withIdentifier: "showCamera", sender: self)
+        if isLastTime == true{
+            performSegue(withIdentifier: "surveyToCongrats", sender: self)
         }
         else {
             performSegue(withIdentifier: "unfinishedTask", sender: self)
@@ -94,7 +89,7 @@ class SurveyViewController: UIViewController, MFMessageComposeViewControllerDele
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showCamera" {
             let cameraViewController = segue.destination as! CameraViewController
-
+            
             cameraViewController.didFinish = isLastTime
             cameraViewController.task = task!
             cameraViewController.items = items
@@ -130,9 +125,9 @@ class SurveyViewController: UIViewController, MFMessageComposeViewControllerDele
             }
             
             let congratsViewController = segue.destination as! FinishTaskViewController
-                        congratsViewController.task = task!
-                        congratsViewController.results = results
-                        congratsViewController.originalItems = originalItems
+            congratsViewController.task = task!
+            congratsViewController.results = results
+            congratsViewController.originalItems = originalItems
         }
     }
     
@@ -146,11 +141,13 @@ class SurveyViewController: UIViewController, MFMessageComposeViewControllerDele
             let str = "\(name!) has successfully completed the task: \(item!.itemTitle). A picture of the product coming soon!"
             sendText(text: str)
         }
-        else if isLastTime == true{
-            performSegue(withIdentifier: "surveyToCongrats", sender: self)
-        }
         else{
-            performSegue(withIdentifier: "unfinishedTask", sender: self)
+            if isLastTime == true{
+                performSegue(withIdentifier: "surveyToCongrats", sender: self)
+            }
+            else{
+                performSegue(withIdentifier: "unfinishedTask", sender: self)
+            }
         }
     }
     
@@ -164,12 +161,13 @@ class SurveyViewController: UIViewController, MFMessageComposeViewControllerDele
             let str = "\(name!) has NOT completed task: \(item!.itemTitle)."
             sendText(text: str)
         }
-        else if isLastTime == true{
-            performSegue(withIdentifier: "surveyToCongrats", sender: self)
-        }
         else{
-            performSegue(withIdentifier: "unfinishedTask", sender: self)
-            
+            if isLastTime == true{
+                performSegue(withIdentifier: "surveyToCongrats", sender: self)
+            }
+            else{
+                performSegue(withIdentifier: "unfinishedTask", sender: self)
+            }
         }
     }
 }
