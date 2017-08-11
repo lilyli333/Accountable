@@ -69,7 +69,7 @@ class SurveyViewController: UIViewController, MFMessageComposeViewControllerDele
             noButtonTapped(self)
         }
         else {
-            seconds! -= 10
+            seconds! -= 1
             timeLabel.text = ToStringHelper.timeString(time: TimeInterval(seconds!))
         }
     }

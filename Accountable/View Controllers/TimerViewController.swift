@@ -59,7 +59,7 @@ class TimerViewController: UIViewController {
             // AudioServicesPlaySystemSound (systemSoundID)
         }
         else {
-            seconds -= 10
+            seconds -= 1
             timeLabel.text = ToStringHelper.timeString(time: TimeInterval(seconds))
         }
     }
