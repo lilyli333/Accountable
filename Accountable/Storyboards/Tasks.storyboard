@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="en0-H8-elB">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="en0-H8-elB">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -310,7 +310,7 @@
                                                 <rect key="frame" x="0.0" y="28" width="280" height="200"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nZt-ZX-GCg" id="MQP-cq-gd2">
-                                                    <rect key="frame" x="0.0" y="0.0" width="280" height="199.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="280" height="199"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="hRI-Xe-H0N">
@@ -642,7 +642,7 @@
         <scene sceneID="uwd-U6-orn">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="en0-H8-elB" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="list.svg" id="dpv-wP-DzQ">
+                    <tabBarItem key="tabBarItem" title="" image="list.svg" selectedImage="list" id="dpv-wP-DzQ">
                         <inset key="imageInsets" minX="0.0" minY="7" maxX="0.0" maxY="-7"/>
                     </tabBarItem>
                     <toolbarItems/>
@@ -1760,7 +1760,7 @@
                                                 <rect key="frame" x="0.0" y="28" width="260" height="75"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="m1D-iL-kMi" id="hpc-Xg-qqC">
-                                                    <rect key="frame" x="0.0" y="0.0" width="260" height="74.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="260" height="75"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="5yh-JQ-upM">
@@ -1938,8 +1938,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="list" width="18" height="18"/>
         <image name="list.svg" width="16" height="16"/>
-        <image name="plus-circle" width="20" height="20"/>
+        <image name="plus-circle" width="18" height="18"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="NY1-f1-yAl"/>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="4kE-50-M9L">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="4kE-50-M9L">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -325,7 +325,7 @@
                             <constraint firstItem="IsG-ty-KX1" firstAttribute="top" secondItem="WSe-9r-elh" secondAttribute="bottom" id="tVG-0G-PxZ"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" tag="1" title="" image="plus-icon" id="veI-6G-OzJ">
+                    <tabBarItem key="tabBarItem" tag="1" title="" image="plus" selectedImage="plus" id="veI-6G-OzJ">
                         <inset key="imageInsets" minX="0.0" minY="7" maxX="0.0" maxY="-7"/>
                     </tabBarItem>
                     <navigationItem key="navigationItem" id="qnh-LD-N3f"/>
@@ -537,7 +537,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="plus-icon" width="18" height="18"/>
+        <image name="plus" width="18" height="18"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="9av-d6-JX3"/>

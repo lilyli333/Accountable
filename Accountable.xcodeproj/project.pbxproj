@@ -26,6 +26,7 @@
 		82CEC39F1F22635700CB1256 /* NewItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82CEC39E1F22635700CB1256 /* NewItemViewController.swift */; };
 		82CEC3A11F22674100CB1256 /* DisplayItemsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82CEC3A01F22674100CB1256 /* DisplayItemsTableViewCell.swift */; };
 		82CEC3A31F2268BF00CB1256 /* EditTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82CEC3A21F2268BF00CB1256 /* EditTaskViewController.swift */; };
+		82D775ED1F454524003965CD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82D775EC1F454524003965CD /* Images.xcassets */; };
 		82E358261F27A92200264201 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E358251F27A92200264201 /* CameraViewController.swift */; };
 		82E3582A1F280A0400264201 /* FinishTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E358291F280A0400264201 /* FinishTaskViewController.swift */; };
 		82E3582C1F2905D400264201 /* WarningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E3582B1F2905D400264201 /* WarningViewController.swift */; };
@@ -42,7 +43,6 @@
 		82E358431F2A6C9F00264201 /* ChangeSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E358421F2A6C9F00264201 /* ChangeSettingsViewController.swift */; };
 		82E358471F2AAA2800264201 /* PinInput.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82E358461F2AAA2800264201 /* PinInput.storyboard */; };
 		82E358491F2C3F9200264201 /* ChangePinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E358481F2C3F9200264201 /* ChangePinViewController.swift */; };
-		82E358531F30026500264201 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82E358521F30026500264201 /* Assets.xcassets */; };
 		82E358551F301EAD00264201 /* AboutCreatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E358541F301EAD00264201 /* AboutCreatorViewController.swift */; };
 		82E358571F302D1200264201 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E358561F302D1200264201 /* MainTabBarController.swift */; };
 		82E358591F31087300264201 /* String+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E358581F31087300264201 /* String+Utilities.swift */; };
@@ -80,6 +80,7 @@
 		82CEC39E1F22635700CB1256 /* NewItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewItemViewController.swift; path = "View Controllers/NewItemViewController.swift"; sourceTree = "<group>"; };
 		82CEC3A01F22674100CB1256 /* DisplayItemsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DisplayItemsTableViewCell.swift; path = Views/DisplayItemsTableViewCell.swift; sourceTree = "<group>"; };
 		82CEC3A21F2268BF00CB1256 /* EditTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditTaskViewController.swift; path = "View Controllers/EditTaskViewController.swift"; sourceTree = "<group>"; };
+		82D775EC1F454524003965CD /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		82E358251F27A92200264201 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CameraViewController.swift; path = "View Controllers/CameraViewController.swift"; sourceTree = "<group>"; };
 		82E358291F280A0400264201 /* FinishTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FinishTaskViewController.swift; path = "View Controllers/FinishTaskViewController.swift"; sourceTree = "<group>"; };
 		82E3582B1F2905D400264201 /* WarningViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WarningViewController.swift; path = "View Controllers/WarningViewController.swift"; sourceTree = "<group>"; };
@@ -96,7 +97,6 @@
 		82E358421F2A6C9F00264201 /* ChangeSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChangeSettingsViewController.swift; path = "View Controllers/ChangeSettingsViewController.swift"; sourceTree = "<group>"; };
 		82E358461F2AAA2800264201 /* PinInput.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = PinInput.storyboard; path = Storyboards/PinInput.storyboard; sourceTree = "<group>"; };
 		82E358481F2C3F9200264201 /* ChangePinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChangePinViewController.swift; path = "View Controllers/ChangePinViewController.swift"; sourceTree = "<group>"; };
-		82E358521F30026500264201 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../Assets.xcassets; sourceTree = "<group>"; };
 		82E358541F301EAD00264201 /* AboutCreatorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AboutCreatorViewController.swift; path = "View Controllers/AboutCreatorViewController.swift"; sourceTree = "<group>"; };
 		82E358561F302D1200264201 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainTabBarController.swift; path = "View Controllers/MainTabBarController.swift"; sourceTree = "<group>"; };
 		82E358581F31087300264201 /* String+Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "String+Utilities.swift"; path = "Extensions/String+Utilities.swift"; sourceTree = "<group>"; };
@@ -172,7 +172,6 @@
 		82F3121E1F180ED3003D00F2 /* Accountable */ = {
 			isa = PBXGroup;
 			children = (
-				82E358521F30026500264201 /* Assets.xcassets */,
 				82F312261F180ED3003D00F2 /* Accountable.xcdatamodeld */,
 				82F3121F1F180ED3003D00F2 /* AppDelegate.swift */,
 				82F312401F181CE4003D00F2 /* CoreData */,
@@ -184,6 +183,7 @@
 				82E3582D1F29171B00264201 /* Supporting Files */,
 				82F312351F180F32003D00F2 /* View Controllers */,
 				82F312341F180F2B003D00F2 /* Views */,
+				82D775EC1F454524003965CD /* Images.xcassets */,
 			);
 			path = Accountable;
 			sourceTree = "<group>";
@@ -335,13 +335,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				82D775ED1F454524003965CD /* Images.xcassets in Resources */,
 				82CEC3911F21220700CB1256 /* NewTask.storyboard in Resources */,
 				82E358471F2AAA2800264201 /* PinInput.storyboard in Resources */,
 				82F312501F181DD1003D00F2 /* Main.storyboard in Resources */,
 				826A3C331F1FD6AF0018137B /* Tasks.storyboard in Resources */,
 				82E358311F29183900264201 /* Namepinselect.storyboard in Resources */,
 				82F3124F1F181DD1003D00F2 /* LaunchScreen.storyboard in Resources */,
-				82E358531F30026500264201 /* Assets.xcassets in Resources */,
 				82E3583F1F2A5E5900264201 /* Settings.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -498,6 +498,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				DEVELOPMENT_TEAM = 23M69Q523Q;
 				INFOPLIST_FILE = Accountable/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -512,6 +513,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				DEVELOPMENT_TEAM = 23M69Q523Q;
 				INFOPLIST_FILE = Accountable/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
